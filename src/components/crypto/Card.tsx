@@ -8,7 +8,8 @@ const Card = () => {
   setCryptoList= getAllCrypto();
   return setCryptoList.data
     );
-},
+  }
+
   return (
   <div>
     { cryptoList && cryptoList.map((crypto)=>{
