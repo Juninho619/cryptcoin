@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useState } from "react";
 
 export async function getAllCrypto() {
   let url = `${process.env.NEXT_PUBLIC_API_URL}crypto/all`;

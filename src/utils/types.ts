@@ -4,6 +4,7 @@ export type authProps = {
   pseudo: string;
   city: string;
   email: string;
+  age: number;
   password: string;
   promoCode?: string;
 };

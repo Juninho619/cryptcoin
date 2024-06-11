@@ -6,6 +6,7 @@ export const schema = yup.object({
   lastName: yup.string().required("Last name is required"),
   city: yup.string().required("City is required"),
   pseudo: yup.string().required("Pseudo is required"),
+  age: yup.number().required("Honestly state your age"),
   email: yup
     .string()
     .email("Invalid email format")
@@ -16,7 +17,7 @@ export const schema = yup.object({
     .required("Email is required"),
   password: yup
     .string()
-    .required("le champs est obligatoire")
+    .required("le champ est obligatoire")
     .matches(/[a-z]/, "Password must contain at least one lowercase letter")
     .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
     .matches(/[0-9]/, "Password must contain at least one number")

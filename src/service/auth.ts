@@ -2,11 +2,13 @@ import { authProps, loginProps } from "@/utils/types";
 import axios from "axios";
 
 export async function registerUser(authProps: authProps) {
+  console.log("hey");
+
   let url = `${process.env.NEXT_PUBLIC_API_URL}auth/signup`;
 
   let axiosConfig = {
     headers: {
-      "content-type": "application/x-www-form-urlencoded;charset=utf-8",
+      "content-type": "application/json",
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
     },
@@ -18,6 +20,7 @@ export async function registerUser(authProps: authProps) {
         firstName: authProps.firstName,
         lastName: authProps.lastName,
         pseudo: authProps.pseudo,
+        age: authProps.age,
         city: authProps.city,
         email: authProps.email,
         password: authProps.password,

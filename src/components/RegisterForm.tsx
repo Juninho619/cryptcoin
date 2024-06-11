@@ -18,11 +18,21 @@ function RegisterForm() {
 
   const {
     handleSubmit,
+    setError,
     register,
     formState: { errors },
   } = useForm<authProps>({
     mode: "all",
     resolver: yupResolver(schema),
+    defaultValues: {
+      firstName: "JD",
+      lastName: "McDonagh",
+      email: "jdmcdonagh@mail.com",
+      pseudo: "JDisGod",
+      city: "Dublin",
+      promoCode: "PROMO1000",
+      password: "jdRulez7*",
+    },
   });
 
   const onSubmit = (data: authProps) => {
@@ -37,8 +47,12 @@ function RegisterForm() {
           }
         }
       });
-    } catch (e) {
-      console.log("error", e);
+    } catch (error: any) {
+      console.log(error);
+      setError("root", {
+        type: "manual",
+        message: error.response.data.message,
+      });
     }
   };
   return (
@@ -114,6 +128,25 @@ function RegisterForm() {
             />
             {errors?.pseudo && (
               <p className='text-red-500'>{errors.pseudo.message}</p>
+            )}
+          </div>
+          <div className='mb-4'>
+            <label
+              className='block text-gray-700 text-sm font-bold mb-2'
+              htmlFor='last-name'>
+              Age
+            </label>
+            <input
+              className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+              id='age'
+              type='number'
+              placeholder='185'
+              {...register("age", {
+                required: "field is mandatory",
+              })}
+            />
+            {errors?.age && (
+              <p className='text-red-500'>{errors.age.message}</p>
             )}
           </div>
           <div className='mb-4'>
@@ -207,23 +240,21 @@ function RegisterForm() {
               <p className='text-red-500'>{errors.promoCode.message}</p>
             )}
           </div>
-
-          <div className='flex items-center justify-between'>
-            <button
-              className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
-              type='button'>
-              Sign Up
-            </button>
-            <a
-              className='inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800'
-              href='#'>
-              Forgot Password?
-            </a>
-          </div>
+          <button
+            className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+            type='submit'>
+            Sign Up
+          </button>
         </form>
+        <a
+          className='inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800'
+          href='#'>
+          Forgot Password?
+        </a>
         <p className='text-center text-gray-500 text-xs'></p>
       </div>
     </div>
   );
 }
+
 export default RegisterForm;
