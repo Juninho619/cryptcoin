@@ -2,7 +2,7 @@ import { getAllCrypto } from "@/service/crypto";
 import React, { useEffect, useState } from "react";
 
 const Card = () => {
-  const [cryptoList, setCryptoList] = useState([]);
+  const [cryptoList, setCryptoList] = useState([{}]);
 
   useEffect(() => {
     const data = await getAllCrypto();
