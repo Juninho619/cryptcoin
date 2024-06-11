@@ -1,52 +1,52 @@
 "use client";
 import { registerUser } from "@/service/auth";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
-const Register = () => {
-  const [firstName, setfirstName] = useState("");
-  const [lastName, setlastName] = useState("");
-  const [pseudo, setPseudo] = useState("");
-  const [city, setCity] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [promoCode, setPromoCode] = useState("");
-  const [error, setError] = useState("");
+import React, { useState } from "react";
+import { authProps } from "@/utils/types";
+import { schema } from "@/validations/validationForm";
+
+// {...register("first_name", {required:"ce champs est obligatoire",minLength:{value:5, message:"minimum 5 caracteres"}})}
+
+// regex email
+// /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
+
+function RegisterForm() {
   const { push } = useRouter();
 
-  function handleSubmit() {
-    if (!firstName || !lastName || !pseudo || !city || !email || !password) {
-      setError("All fields are mandatory");
-    } else {
-      let registerData = {
-        firstName: firstName,
-        lastName: lastName,
-        pseudo: pseudo,
-        city: city,
-        email: email,
-        password: password,
-        promoCode: promoCode,
-      };
-      try {
-        registerUser(registerData).then((res: any) => {
-          if (res.status === 201) {
-            if (typeof window !== "undefined") {
-              window.localStorage.setItem("token", res.data.access_token);
-              push("/");
-            }
-          }
-        });
-      } catch (e) {
-        console.log("error", e);
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<authProps>({
+    mode: "all",
+    resolver: yupResolver(schema),
+  });
 
-        setError("Credentials taken");
-      }
+  const onSubmit = (data: authProps) => {
+    console.log(data);
+
+    try {
+      registerUser(data).then((res: any) => {
+        if (res.status === 201) {
+          if (typeof window !== "undefined") {
+            window.localStorage.setItem("token", res.data.access_token);
+            push("/");
+          }
+        }
+      });
+    } catch (e) {
+      console.log("error", e);
     }
-  }
+  };
   return (
     <div className='flex justify-center bg-#9ca3af '>
       <div className='w-full max-w-xs'>
-        <form className='bg-#9ca3af shadow-md rounded px-8 pt-6 pb-8 mb-4 '>
+        <form
+          className='bg-#9ca3af shadow-md rounded px-8 pt-6 pb-8 mb-4 '
+          onSubmit={handleSubmit(onSubmit)}>
           <div className='mb-4'>
             <label
               className='block text-gray-700 text-sm font-bold mb-2'
@@ -58,8 +58,17 @@ const Register = () => {
               id='first-name'
               type='text'
               placeholder='Rocke'
-              onChange={(e) => setfirstName(e.target.value)}
+              {...register("firstName", {
+                required: "field is mandatory",
+                minLength: {
+                  value: 4,
+                  message: "Should be at least 4 characters",
+                },
+              })}
             />
+            {errors?.firstName && (
+              <p className='text-red-500'>{errors.firstName.message}</p>
+            )}
           </div>
           <div className='mb-4'>
             <label
@@ -72,8 +81,17 @@ const Register = () => {
               id='last-name'
               type='text'
               placeholder='Feller'
-              onChange={(e) => setlastName(e.target.value)}
+              {...register("lastName", {
+                required: "field is mandatory",
+                minLength: {
+                  value: 4,
+                  message: "Should be at least 4 characters",
+                },
+              })}
             />
+            {errors?.lastName && (
+              <p className='text-red-500'>{errors.lastName.message}</p>
+            )}
           </div>
           <div className='mb-4'>
             <label
@@ -86,8 +104,17 @@ const Register = () => {
               id='pseudo'
               type='text'
               placeholder='HollerIfURich'
-              onChange={(e) => setPseudo(e.target.value)}
+              {...register("pseudo", {
+                required: "field is mandatory",
+                minLength: {
+                  value: 4,
+                  message: "Should be at least 4 characters",
+                },
+              })}
             />
+            {errors?.pseudo && (
+              <p className='text-red-500'>{errors.pseudo.message}</p>
+            )}
           </div>
           <div className='mb-4'>
             <label
@@ -100,8 +127,17 @@ const Register = () => {
               id='city'
               type='text'
               placeholder='Chambéry'
-              onChange={(e) => setCity(e.target.value)}
+              {...register("city", {
+                required: "field is mandatory",
+                minLength: {
+                  value: 4,
+                  message: "Should be at least 4 characters",
+                },
+              })}
             />
+            {errors?.city && (
+              <p className='text-red-500'>{errors.city.message}</p>
+            )}
           </div>
           <div className='mb-4'>
             <label
@@ -114,8 +150,17 @@ const Register = () => {
               id='email'
               type='email'
               placeholder='rocke@feller.com'
-              onChange={(e) => setEmail(e.target.value)}
+              {...register("email", {
+                required: "Email is mandatory",
+                pattern: {
+                  value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                  message: "Please enter a valid email address",
+                },
+              })}
             />
+            {errors?.email && (
+              <p className='text-red-500'>{errors.email.message}</p>
+            )}
           </div>
           <div className='mb-6'>
             <label
@@ -128,8 +173,17 @@ const Register = () => {
               id='password'
               type='password'
               placeholder='******************'
-              onChange={(e) => setPassword(e.target.value)}
+              {...register("password", {
+                required: "field is mandatory",
+                minLength: {
+                  value: 4,
+                  message: "Should be at least 4 characters",
+                },
+              })}
             />
+            {errors?.password && (
+              <p className='text-red-500'>{errors.password.message}</p>
+            )}
           </div>
           <div className='mb-4'>
             <label
@@ -142,17 +196,22 @@ const Register = () => {
               id='promocode'
               type='text'
               placeholder='e.g: PROMO1000'
-              onChange={(e) => setPromoCode(e.target.value)}
+              {...register("promoCode", {
+                minLength: {
+                  value: 2,
+                  message: "Should be at least 2 characters",
+                },
+              })}
             />
+            {errors?.promoCode && (
+              <p className='text-red-500'>{errors.promoCode.message}</p>
+            )}
           </div>
 
           <div className='flex items-center justify-between'>
             <button
               className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
-              type='button'
-              onClick={() => {
-                handleSubmit();
-              }}>
+              type='button'>
               Sign Up
             </button>
             <a
@@ -166,5 +225,5 @@ const Register = () => {
       </div>
     </div>
   );
-};
-export default Register;
+}
+export default RegisterForm;
