@@ -16,7 +16,7 @@ const login = () => {
           if (res.status === 200) {
             if (typeof window !== "undefined") {
               window.localStorage.setItem("token", res.data.access_token);
-              push("/");
+              push("/crypto");
             }
           }
         });

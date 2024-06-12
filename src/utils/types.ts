@@ -15,7 +15,9 @@ export type loginProps = {
 };
 
 export type cryptoProps = {
+  id: string;
   image: string;
   name: string;
   value: number;
+  quantity: number;
 };
