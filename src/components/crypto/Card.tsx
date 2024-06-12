@@ -1,10 +1,13 @@
 "use client";
-import { getAllCrypto } from "@/service/crypto";
+import { getAllCrypto, searchCrypto } from "@/service/crypto";
 import { cryptoProps } from "@/utils/types";
-import React, { useEffect, useState } from "react";
+import { AxiosResponse } from "axios";
+import React, { useEffect, useRef, useState } from "react";
 
 function Card() {
   const [cryptoList, setCryptoList] = useState<cryptoProps[]>([]);
+  const refInput = useRef<HTMLInputElement>(null);
+  const [searchInput, setSearchInput] = useState<string>("");
 
   useEffect(() => {
     async function fetchData() {
@@ -17,10 +20,32 @@ function Card() {
     }
     fetchData();
   }, []);
+  function setproducts(data: AxiosResponse<any, any>) {
+    throw new Error("U twat.");
+  }
+  const handleSearch = (e: any) => {
+    setSearchInput(e.target.value);
+  };
+
   return (
     <div>
-      <input type='search' className='border border-sky-500' />
-      <button className='border border-sky-500'>Search</button>
+      <input
+        type='search'
+        className='border border-sky-500'
+        ref={refInput}
+        onChange={handleSearch}
+      />
+      <button
+        className='border border-sky-500'
+        onClick={async (e) => {
+          const value = refInput.current?.value;
+          if (value) {
+            const data = await searchCrypto(value);
+            setproducts(data);
+          }
+        }}>
+        Search
+      </button>
       {cryptoList &&
         cryptoList.map((crypto) => {
           return (

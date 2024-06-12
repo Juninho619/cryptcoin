@@ -3,7 +3,7 @@ import { loginUser } from "@/service/auth";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-const login = () => {
+function login() {
   function handleSubmit() {
     if (!email || !password) setError("All fields are mandatory");
     else {
@@ -83,6 +83,6 @@ const login = () => {
       </div>
     </div>
   );
-};
+}
 
 export default login;
