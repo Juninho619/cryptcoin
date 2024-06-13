@@ -5,7 +5,7 @@ import { OffersProps } from "@/utils/types";
 import { OfferCard } from "@/components/offer/OfferCard";
 import React, { useEffect, useState } from "react";
 
-const page = () => {
+function page() {
   const [offersList, setOffersList] = useState<OffersProps[]>();
   const [isReloadNeeded, setIsReloadNeeded] = useState(false);
 
@@ -35,6 +35,6 @@ const page = () => {
         })}
     </div>
   );
-};
+}
 
 export default page;

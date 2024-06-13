@@ -1,18 +1,18 @@
-import CryptoCards from "@/app/crypto/page";
+"use client";
 import { OffersProps } from "@/utils/types";
-import React from "react";
-
+import React, { Dispatch, SetStateAction } from "react";
 import toast from "react-hot-toast";
-import { Cryptocard } from "../crypto/Card";
-import { buyOffer } from "@/service/offer";
 
-export const OfferCard = ({
+import { buyOffer } from "@/service/offer";
+import { CryptoCard } from "../crypto/CryptoCard";
+
+export function OfferCard({
   offer,
   setIsReloadNeeded,
 }: {
   offer: OffersProps;
-  setIsReloadNeeded: any;
-}) => {
+  setIsReloadNeeded: Dispatch<SetStateAction<boolean>>;
+}) {
   function handleCryptoBuyViaOffer(offerId: string) {
     buyOffer(offerId)
       .then((res) => {
@@ -20,22 +20,25 @@ export const OfferCard = ({
           if (res.status === 204) {
             toast.error("Item already sold");
           }
-          if (res.status === 201) toast.success("Success");
-          setIsReloadNeeded(true);
+
+          if (res.status === 201) {
+            toast.success("Success");
+            setIsReloadNeeded(true);
+          }
         }
       })
       .catch((e) => {
         if (e) {
           toast.error("error");
+          console.log(e);
         }
       });
   }
-
   return (
     <div>
       <p>Number of tokens: {offer.amount}</p>
       <p>Seller: {offer.User.pseudo}</p>
-      <Cryptocard crypto={offer.Crypto} isBuyVisible={false} />
+      <CryptoCard crypto={offer.Crypto} isBuyVisible={false} />
       <div className='w-full flex justify-end'>
         <button
           className='bg-white text-center rounded-lg text-indigo-600 w-20 p-1 text-sm mt-1'
@@ -47,4 +50,4 @@ export const OfferCard = ({
       </div>
     </div>
   );
-};
+}

@@ -45,3 +45,24 @@ export async function buyOffer(id_offer: string) {
       throw new Error(e);
     });
 }
+
+export async function updateOffer(idOffer: string) {
+  let url = `${process.env.NEXT_PUBLIC_API_URL}offer/update/${idOffer}`;
+
+  let axiosConfig = {
+    headers: {
+      "content-type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  };
+  return axios
+    .patch(url, { idOffer: idOffer }, axiosConfig)
+    .then((res) => {
+      return res;
+    })
+    .catch((e) => {
+      throw new Error(e);
+    });
+}

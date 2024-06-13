@@ -15,16 +15,6 @@ export type loginProps = {
 };
 
 export type cryptoProps = {
-  id: string;
-  image: string;
-  name: string;
-  value: number;
-  quantity: number;
-  updated_at: string;
-  created_at: string;
-};
-
-export type CryptoPops = {
   created_at: string;
   id: string;
   image: string;
@@ -42,5 +32,5 @@ export type OffersProps = {
   amount: number;
   created_at: string;
   id_user: string;
-  Crypto: CryptoPops;
+  Crypto: cryptoProps;
 };

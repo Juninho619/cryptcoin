@@ -1,14 +1,14 @@
-import { CryptoPops } from "@/utils/types";
+import { cryptoProps } from "@/utils/types";
 import React from "react";
 import { BuyCryptoModal } from "../modal/BuyCryptoModal";
 
-export const Cryptocard = ({
+export function CryptoCard({
   crypto,
   isBuyVisible,
 }: {
-  crypto: CryptoPops;
+  crypto: cryptoProps;
   isBuyVisible: boolean;
-}) => {
+}) {
   return (
     <div>
       <div className='flex flex-row flex-end'></div>
@@ -24,4 +24,4 @@ export const Cryptocard = ({
       <BuyCryptoModal crypto={crypto} />
     </div>
   );
-};
+}

@@ -1,10 +1,9 @@
-"use client";
-import { buyCrypto } from "@/service/crypto";
-import { cryptoProps } from "@/utils/types";
+import { updateOffer } from "@/service/offer";
+import { OffersProps } from "@/utils/types";
 import { Box, Modal } from "@mui/material";
 import React, { useState } from "react";
 
-export function BuyCryptoModal({ crypto }: { crypto: cryptoProps }) {
+export function UpdateOffer({ offer }: { offer: OffersProps }) {
   const style = {
     position: "absolute" as "absolute",
     top: "50%",
@@ -21,8 +20,8 @@ export function BuyCryptoModal({ crypto }: { crypto: cryptoProps }) {
   const handleClose = () => setOpen(false);
   const [amount, setAmount] = useState(0);
 
-  function HandleCrypoBuy() {
-    buyCrypto(crypto.id, amount)
+  function handleUpdateOffer() {
+    updateOffer(offer.id)
       .then((res) => {
         alert("success");
         handleClose();
@@ -62,7 +61,7 @@ export function BuyCryptoModal({ crypto }: { crypto: cryptoProps }) {
             <button
               className='bg-green-700 text-white rounded-md text-center w-32 p-2 m-4 '
               onClick={() => {
-                HandleCrypoBuy();
+                handleUpdateOffer();
               }}>
               Acheter
             </button>
@@ -72,3 +71,4 @@ export function BuyCryptoModal({ crypto }: { crypto: cryptoProps }) {
     </div>
   );
 }
+export default UpdateOffer;
