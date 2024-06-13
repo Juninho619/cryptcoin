@@ -20,4 +20,27 @@ export type cryptoProps = {
   name: string;
   value: number;
   quantity: number;
+  updated_at: string;
+  created_at: string;
+};
+
+export type CryptoPops = {
+  created_at: string;
+  id: string;
+  image: string;
+  name: string;
+  quantity: number;
+  updated_at: string;
+  value: number;
+};
+
+export type OffersProps = {
+  id: string;
+  User: {
+    pseudo: string;
+  };
+  amount: number;
+  created_at: string;
+  id_user: string;
+  Crypto: CryptoPops;
 };

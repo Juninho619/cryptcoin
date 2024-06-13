@@ -1,72 +1,27 @@
-"use client";
-import { getAllCrypto, searchCrypto } from "@/service/crypto";
-import { cryptoProps } from "@/utils/types";
-import React, { useEffect, useState } from "react";
+import { CryptoPops } from "@/utils/types";
+import React from "react";
+import { BuyCryptoModal } from "../modal/BuyCryptoModal";
 
-function Card() {
-  const [cryptoList, setCryptoList] = useState<cryptoProps[]>([]);
-  const [searchInput, setSearchInput] = useState<string>("");
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const data = await getAllCrypto();
-        setCryptoList(data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    fetchData();
-  }, []);
+export const Cryptocard = ({
+  crypto,
+  isBuyVisible,
+}: {
+  crypto: CryptoPops;
+  isBuyVisible: boolean;
+}) => {
   return (
     <div>
-      <input
-        type='search'
-        className='border border-sky-500'
-        onChange={(e) => setSearchInput(e.target.value)}
+      <div className='flex flex-row flex-end'></div>
+      <img
+        src={crypto.image}
+        alt={crypto.name}
+        className='w-full h-48 object-cover'
       />
-      <button
-        className='border border-sky-500'
-        onClick={async () => {
-          const data = searchCrypto(searchInput);
-        }}>
-        Search
-      </button>
-      {cryptoList &&
-        cryptoList.map((crypto) => {
-          return (
-            <div
-              key={crypto.id}
-              className='relative flex w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md justify-center'>
-              <div className='relative mx-4 mt-4 h-96 overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700'>
-                <img
-                  src={crypto.image}
-                  className='h-full w-full object-cover'
-                  alt={crypto.name}
-                />
-              </div>
-              <div className='p-6'>
-                <div className='mb-2 flex items-center justify-between'>
-                  <p className='block font-sans text-base font-medium leading-relaxed text-blue-gray-900 antialiased'>
-                    {crypto.name}
-                  </p>
-                </div>
-                <div className='mb-2 flex items-center justify-between'>
-                  <p className='block font-sans text-base font-medium leading-relaxed text-blue-gray-900 antialiased'>
-                    {crypto.value}
-                  </p>
-                </div>
-                <div className='mb-2 flex items-center justify-between'>
-                  <p className='block font-sans text-base font-medium leading-relaxed text-blue-gray-900 antialiased'>
-                    {crypto.quantity}
-                  </p>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+      <p>{crypto.name}</p>
+
+      <p className='text-sm'>Value: {crypto.value}</p>
+      <p className='text-sm'>Remaining Quantity on server: {crypto.quantity}</p>
+      <BuyCryptoModal crypto={crypto} />
     </div>
   );
-}
-
-export default Card;
+};
