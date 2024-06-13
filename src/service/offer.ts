@@ -26,7 +26,7 @@ export async function getAllOffers() {
 }
 
 export async function buyOffer(id_offer: string) {
-  let url = `${process.env.NEXT_PUBLIC_CRYPTO_API_URL}trade/create`;
+  let url = `${process.env.NEXT_PUBLIC_API_URL}trade/create`;
 
   let axiosConfig = {
     headers: {
