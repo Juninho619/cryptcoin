@@ -15,22 +15,22 @@ export type loginProps = {
 };
 
 export type cryptoProps = {
-  created_at: string;
-  id: string;
+  created_at?: string;
+  id?: string;
   image: string;
   name: string;
   quantity: number;
-  updated_at: string;
+  updated_at?: string;
   value: number;
 };
 
 export type OffersProps = {
-  id: string;
-  User: {
-    pseudo: string;
+  id?: string;
+  User?: {
+    pseudo?: string;
   };
-  amount: number;
-  created_at: string;
-  id_user: string;
-  Crypto: cryptoProps;
+  amount?: number;
+  created_at?: string;
+  id_user?: string;
+  Crypto?: cryptoProps;
 };

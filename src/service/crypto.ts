@@ -1,3 +1,4 @@
+import { cryptoProps } from "@/utils/types";
 import axios from "axios";
 
 export async function getAllCrypto() {
@@ -58,6 +59,36 @@ export async function buyCrypto(cryptoid: string, amount: number) {
       {
         id_crypto: cryptoid,
         amount: amount,
+      },
+      axiosConfig
+    )
+    .then((res) => {
+      return res;
+    })
+    .catch((e) => {
+      throw new Error(e);
+    });
+}
+
+export async function createCrypto(cryptoProps: cryptoProps) {
+  let url = `${process.env.NEXT_PUBLIC_API_URL}crypto/create`;
+
+  let axiosConfig = {
+    headers: {
+      "content-type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  };
+  return axios
+    .post(
+      url,
+      {
+        name: cryptoProps.name,
+        value: cryptoProps.value,
+        quantity: cryptoProps.quantity,
+        image: cryptoProps.image,
       },
       axiosConfig
     )

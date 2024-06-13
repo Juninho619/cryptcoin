@@ -4,6 +4,7 @@ import { getAllOffers } from "@/service/offer";
 import { OffersProps } from "@/utils/types";
 import { OfferCard } from "@/components/offer/OfferCard";
 import React, { useEffect, useState } from "react";
+import UpdateOffer from "@/components/modal/UpdateOffer";
 
 function page() {
   const [offersList, setOffersList] = useState<OffersProps[]>();
@@ -30,6 +31,7 @@ function page() {
               key={offer.id}
               className='border-2 border-solid w-full rounded-md mt-1 p-2 '>
               <OfferCard offer={offer} setIsReloadNeeded={setIsReloadNeeded} />
+              <UpdateOffer></UpdateOffer>
             </div>
           );
         })}

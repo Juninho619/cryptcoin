@@ -21,20 +21,19 @@ export function UpdateOffer({ offer }: { offer: OffersProps }) {
   const [amount, setAmount] = useState(0);
 
   function handleUpdateOffer() {
-    updateOffer(offer.id)
+    updateOffer(offer.id, amount)
       .then((res) => {
         alert("success");
         handleClose();
       })
       .catch((e) => console.log(e));
   }
-
   return (
     <div>
       <button
         onClick={handleOpen}
         className='bg-white text-center rounded-lg text-indigo-600 w-20 p-1 text-sm mt-1'>
-        Buy{" "}
+        Update{" "}
       </button>
       <Modal
         open={open}
@@ -48,7 +47,7 @@ export function UpdateOffer({ offer }: { offer: OffersProps }) {
               setAmount(Number(e.target.value));
             }}
             className='text-black indent-3 border-2 border-black  w-full'
-            placeholder='how many tokens?'
+            placeholder=''
             required
           />
 
@@ -56,14 +55,14 @@ export function UpdateOffer({ offer }: { offer: OffersProps }) {
             <button
               onClick={handleClose}
               className='bg-red-400 text-white rounded-md text-center w-32 p-2 m-4 '>
-              Annuler
+              Cancel
             </button>
             <button
               className='bg-green-700 text-white rounded-md text-center w-32 p-2 m-4 '
               onClick={() => {
                 handleUpdateOffer();
               }}>
-              Acheter
+              Update
             </button>
           </div>
         </Box>

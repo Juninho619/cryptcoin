@@ -1,3 +1,4 @@
+"use client";
 import { CryptoCard } from "@/components/crypto/CryptoCard";
 import { getAllCrypto } from "@/service/crypto";
 import { cryptoProps } from "@/utils/types";
