@@ -1,3 +1,5 @@
+import { number, string } from "yup";
+
 export type authProps = {
   firstName: string;
   lastName: string;
@@ -25,12 +27,26 @@ export type cryptoProps = {
 };
 
 export type OffersProps = {
-  id?: string;
-  User?: {
-    pseudo?: string;
+  id: string;
+  User: {
+    pseudo: string;
   };
-  amount?: number;
-  created_at?: string;
-  id_user?: string;
-  Crypto?: cryptoProps;
+  amount: number;
+  created_at: string;
+  id_user: string;
+  Crypto: cryptoProps;
+};
+
+export type userAssetsProps = {
+  firstName?: string;
+  lastName?: string;
+  dollarAvailables?: string;
+  pseudo?: string;
+  age?: number;
+  UserHasCrypto?: [
+    {
+      Crypto?: cryptoProps;
+      amount?: number;
+    }
+  ];
 };

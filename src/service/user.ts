@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export async function myAssets(userId) {
+export async function myAssets() {
   let url = `${process.env.NEXT_PUBLIC_API_URL}user/my-assets`;
 
   let axiosConfig = {

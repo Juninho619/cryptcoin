@@ -3,7 +3,6 @@ import { OffersProps } from "@/utils/types";
 import React, { Dispatch, SetStateAction } from "react";
 import toast from "react-hot-toast";
 
-import { buyOffer } from "@/service/offer";
 import { CryptoCard } from "../crypto/CryptoCard";
 
 export function OfferCard({
