@@ -24,7 +24,7 @@ export const MyAssets = () => {
     {
       field: "A",
       headerName: "Id",
-      width: 150,
+      width: 350,
       renderCell: (params) => {
         return <p>{params.row.id}</p>;
       },
@@ -40,17 +40,9 @@ export const MyAssets = () => {
     {
       field: "C",
       headerName: "Money",
-      width: 150,
+      width: 250,
       renderCell: (params) => {
         return <p>{params.row.Crypto.value}</p>;
-      },
-    },
-    {
-      field: "D",
-      headerName: "Pseudo",
-      width: 150,
-      renderCell: (params) => {
-        return <p>{params.row.pseudo}</p>;
       },
     },
     {
