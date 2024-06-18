@@ -45,6 +45,22 @@ function PromoCard() {
         return <p>{params.row.value}</p>;
       },
     },
+    {
+      field: "D",
+      headerName: "Update",
+      width: 150,
+      renderCell: (params) => {
+        return <button id={params.row.id}>Update</button>;
+      },
+    },
+    {
+      field: "E",
+      headerName: "Delete",
+      width: 150,
+      renderCell: (params) => {
+        return <button id={params.row.id}>Delete</button>;
+      },
+    },
   ];
   return (
     <div className='w-full'>
