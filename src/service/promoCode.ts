@@ -50,7 +50,7 @@ export async function createPromo(promoCodeProps: promoCodeProps) {
     });
 }
 
-export async function updatePromoCode(id: string) {
+export async function updatePromoCode(id: React.ReactNode) {
   let url = `${process.env.NEXT_PUBLIC_API_URL}promoCode/update/${id}`;
 
   let axiosConfig = {
