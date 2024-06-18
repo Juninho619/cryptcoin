@@ -21,7 +21,7 @@ export function BuyCryptoModal({ crypto }: { crypto: cryptoProps }) {
   const handleClose = () => setOpen(false);
   const [amount, setAmount] = useState(0);
 
-  function HandleCrypoBuy() {
+  function HandleCryptoBuy() {
     buyCrypto(crypto.id, amount)
       .then((res) => {
         alert("success");
@@ -62,7 +62,7 @@ export function BuyCryptoModal({ crypto }: { crypto: cryptoProps }) {
             <button
               className='bg-green-700 text-white rounded-md text-center w-32 p-2 m-4 '
               onClick={() => {
-                HandleCrypoBuy();
+                HandleCryptoBuy();
               }}>
               Acheter
             </button>

@@ -50,6 +50,7 @@ export async function createOffer(OffersProps: OffersProps) {
       throw new Error(e);
     });
 }
+
 export async function updateOffer(idOffer: string, amount: number) {
   let url = `${process.env.NEXT_PUBLIC_API_URL}offer/update/${idOffer}`;
 

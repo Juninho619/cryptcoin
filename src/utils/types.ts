@@ -18,12 +18,12 @@ export type loginProps = {
 
 export type cryptoProps = {
   created_at?: string;
-  id?: string;
-  image: string;
-  name: string;
-  quantity: number;
+  id: string;
+  image?: string;
+  name?: string;
+  quantity?: number;
   updated_at?: string;
-  value: number;
+  value?: number;
 };
 
 export type OffersProps = {
@@ -49,4 +49,9 @@ export type userAssetsProps = {
       amount?: number;
     }
   ];
+};
+
+export type promoCodeProps = {
+  name: string;
+  value: number;
 };

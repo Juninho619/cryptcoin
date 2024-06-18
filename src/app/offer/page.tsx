@@ -31,7 +31,25 @@ function page() {
               key={offer.id}
               className='border-2 border-solid w-full rounded-md mt-1 p-2 '>
               <OfferCard offer={offer} setIsReloadNeeded={setIsReloadNeeded} />
-              <UpdateOffer></UpdateOffer>
+              <UpdateOffer
+                offer={{
+                  id: "",
+                  User: {
+                    pseudo: "",
+                  },
+                  amount: 0,
+                  created_at: "",
+                  id_user: "",
+                  Crypto: {
+                    created_at: undefined,
+                    id: "",
+                    image: undefined,
+                    name: undefined,
+                    quantity: undefined,
+                    updated_at: undefined,
+                    value: undefined,
+                  },
+                }}></UpdateOffer>
             </div>
           );
         })}
