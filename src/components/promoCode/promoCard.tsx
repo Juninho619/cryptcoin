@@ -22,7 +22,7 @@ function PromoCard() {
     {
       field: "A",
       headerName: "Id",
-      width: 150,
+      width: 350,
       renderCell: (params) => {
         return <p>{params.row.id}</p>;
       },
