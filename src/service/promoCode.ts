@@ -50,7 +50,8 @@ export async function createPromo(promoCodeProps: promoCodeProps) {
     });
 }
 
-export async function updatePromoCode(id: React.ReactNode) {
+export async function updatePromoCode(promoCodeProps: promoCodeProps) {
+  const id = promoCodeProps.id;
   let url = `${process.env.NEXT_PUBLIC_API_URL}promoCode/update/${id}`;
 
   let axiosConfig = {
@@ -62,7 +63,11 @@ export async function updatePromoCode(id: React.ReactNode) {
     },
   };
   return axios
-    .patch(url, { id: id }, axiosConfig)
+    .patch(
+      url,
+      { name: promoCodeProps.name, value: promoCodeProps.value },
+      axiosConfig
+    )
     .then((res) => {
       return res;
     })

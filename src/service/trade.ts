@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export async function getAllTrades() {
-  let url = `${process.env.NEXT_PUBLIC_API_URL}trade/create`;
+  let url = `${process.env.NEXT_PUBLIC_API_URL}trade/all`;
 
   let axiosConfig = {
     headers: {

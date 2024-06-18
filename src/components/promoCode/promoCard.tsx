@@ -26,9 +26,8 @@ function PromoCard() {
   const handleClose = () => setOpen(false);
 
   function handleUpdatePromo() {
-    updatePromoCode(id)
+    updatePromoCode()
       .then((res) => {
-        alert("success");
         handleClose();
       })
       .catch((e) => console.log(e));

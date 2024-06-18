@@ -52,6 +52,14 @@ export type userAssetsProps = {
 };
 
 export type promoCodeProps = {
+  id?: string;
   name: string;
   value: number;
+};
+
+export type tradeProps = {
+  id?: string;
+  Giver: authProps;
+  Receiver: authProps;
+  Crypto: cryptoProps;
 };
