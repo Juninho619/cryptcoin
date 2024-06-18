@@ -5,7 +5,7 @@ export async function getAllPromo() {
   let url = `${process.env.NEXT_PUBLIC_API_URL}promoCode/all`;
   let axiosConfig = {
     headers: {
-      "content-type": "application/x-www-form-urlencoded;charset=utf-8",
+      "content-type": "application/json",
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
       Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -26,7 +26,7 @@ export async function createPromo(promoCodeProps: promoCodeProps) {
   let url = `${process.env.NEXT_PUBLIC_API_URL}promoCode/create`;
   let axiosConfig = {
     headers: {
-      "content-type": "application/x-www-form-urlencoded;charset=utf-8",
+      "content-type": "application/json",
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
       Authorization: `Bearer ${localStorage.getItem("token")}`,
