@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 
-const SearchCrypto = () => {
+function SearchCrypto() {
   return (
     <div>
       {" "}
@@ -8,6 +8,6 @@ const SearchCrypto = () => {
       <button className='border border-sky-500'>Search</button>
     </div>
   );
-};
+}
 
 export default SearchCrypto;

@@ -1,6 +1,7 @@
 import { cryptoProps } from "@/utils/types";
 import React, { useEffect, useState } from "react";
 import { getAllCrypto } from "@/service/crypto";
+import { BuyCryptoModal } from "../modal/BuyCryptoModal";
 
 export function CryptoCard() {
   const [cryptoList, setCryptoList] = useState<cryptoProps[]>();
