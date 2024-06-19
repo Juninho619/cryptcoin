@@ -1,19 +1,19 @@
 import { buyCrypto } from "@/service/crypto";
-import { cryptoProps } from "@/utils/types";
-import { schema } from "@/validations/validationCryptoForm";
+import { buyCryptoProps, cryptoProps } from "@/utils/types";
+import { schema } from "@/validations/buyCryptoForm";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Modal } from "@mui/material";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
-export function BuyCryptoModal({ crypto }: { crypto: cryptoProps }) {
+export function BuyCryptoModal() {
   const {
     handleSubmit,
     setError,
     register,
     formState: { errors },
-  } = useForm<cryptoProps>({
+  } = useForm<buyCryptoProps>({
     mode: "all",
     resolver: yupResolver(schema),
   });
@@ -35,11 +35,11 @@ export function BuyCryptoModal({ crypto }: { crypto: cryptoProps }) {
 
   const { push } = useRouter();
 
-  const onSubmit = (data: cryptoProps) => {
+  const onSubmitBuy = (data: buyCryptoProps) => {
     console.log(data);
 
     try {
-      buyCrypto(data, amount).then((res: any) => {
+      buyCrypto(data).then((res: any) => {
         if (res.status === 200) {
           if (typeof window !== "undefined") {
             push("/crypto");
@@ -68,13 +68,13 @@ export function BuyCryptoModal({ crypto }: { crypto: cryptoProps }) {
         aria-describedby='modal-modal-description'>
         <form
           className='bg-#9ca3af shadow-md rounded px-8 pt-6 pb-8 mb-4 '
-          onSubmit={handleSubmit(onSubmit)}>
+          onSubmit={handleSubmit(onSubmitBuy)}>
           <Box sx={style}>
             <input
               type='number'
               className='text-black indent-3 border-2 border-black  w-full'
               placeholder='how many tokens?'
-              {...register("quantity", {
+              {...register("amount", {
                 required: "field is mandatory",
               })}
             />

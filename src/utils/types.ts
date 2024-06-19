@@ -26,6 +26,11 @@ export type cryptoProps = {
   value?: number;
 };
 
+export type buyCryptoProps = {
+  id_crypto: string;
+  amount: number;
+};
+
 export type OffersProps = {
   id: string;
   User: {
