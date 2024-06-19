@@ -1,4 +1,4 @@
-import { OffersProps } from "@/utils/types";
+import { OffersProps, buyCryptoProps } from "@/utils/types";
 import axios from "axios";
 
 export async function getAllOffers() {
@@ -51,7 +51,7 @@ export async function createOffer(OffersProps: OffersProps) {
     });
 }
 
-export async function updateOffer(idOffer: string, amount: number) {
+export async function updateOffer(buyCryptoProps: buyCryptoProps, idOffer) {
   let url = `${process.env.NEXT_PUBLIC_API_URL}offer/update/${idOffer}`;
 
   let axiosConfig = {
@@ -63,7 +63,11 @@ export async function updateOffer(idOffer: string, amount: number) {
     },
   };
   return axios
-    .patch(url, { idOffer: idOffer }, axiosConfig)
+    .patch(
+      url,
+      { id_crypto: buyCryptoProps.id_crypto, amount: buyCryptoProps.amount },
+      axiosConfig
+    )
     .then((res) => {
       return res;
     })

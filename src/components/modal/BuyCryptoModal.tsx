@@ -37,6 +37,7 @@ export function BuyCryptoModal() {
 
   const onSubmitBuy = (data: buyCryptoProps) => {
     console.log(data);
+    console.log("Hey!");
 
     try {
       buyCrypto(data).then((res: any) => {

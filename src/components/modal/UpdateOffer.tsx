@@ -21,7 +21,7 @@ export function UpdateOffer({ offer }: { offer: OffersProps }) {
   const [amount, setAmount] = useState(0);
 
   function handleUpdateOffer() {
-    updateOffer(offer.id, amount)
+    updateOffer(amount)
       .then((res) => {
         alert("success");
         handleClose();
@@ -50,7 +50,6 @@ export function UpdateOffer({ offer }: { offer: OffersProps }) {
             placeholder=''
             required
           />
-
           <div className='flex items-center'>
             <button
               onClick={handleClose}
