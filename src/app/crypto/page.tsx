@@ -1,5 +1,6 @@
 "use client";
 import { CryptoCard } from "@/components/crypto/CryptoCard";
+import SearchCrypto from "@/components/crypto/SearchCrypto";
 import { BuyCryptoModal } from "@/components/modal/BuyCryptoModal";
 import { getAllCrypto } from "@/service/crypto";
 import { cryptoProps } from "@/utils/types";
@@ -10,17 +11,8 @@ function CryptoCards() {
     <>
       <div>
         <CryptoCard />
-        <BuyCryptoModal
-          crypto={{
-            created_at: undefined,
-            id: "",
-            image: undefined,
-            name: undefined,
-            quantity: undefined,
-            updated_at: undefined,
-            value: undefined,
-          }}
-        />
+        <BuyCryptoModal />
+        <SearchCrypto />
       </div>
     </>
   );

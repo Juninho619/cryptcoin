@@ -17,7 +17,6 @@ export function CryptoCard() {
         console.log(e);
       });
   }, []);
-
   return (
     <div className='flex flex-wrap justify-between items-center border-dotted border-2 p-3'>
       {loading &&
@@ -35,6 +34,7 @@ export function CryptoCard() {
               <p className='text-sm'>
                 Remaining Quantity on server: {element.quantity}
               </p>
+              <BuyCryptoModal />
             </div>
           );
         })}

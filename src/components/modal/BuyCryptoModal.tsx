@@ -1,10 +1,22 @@
-"use client";
 import { buyCrypto } from "@/service/crypto";
 import { cryptoProps } from "@/utils/types";
+import { schema } from "@/validations/validationCryptoForm";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Modal } from "@mui/material";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 
 export function BuyCryptoModal({ crypto }: { crypto: cryptoProps }) {
+  const {
+    handleSubmit,
+    setError,
+    register,
+    formState: { errors },
+  } = useForm<cryptoProps>({
+    mode: "all",
+    resolver: yupResolver(schema),
+  });
   const style = {
     position: "absolute" as "absolute",
     top: "50%",
@@ -21,15 +33,27 @@ export function BuyCryptoModal({ crypto }: { crypto: cryptoProps }) {
   const handleClose = () => setOpen(false);
   const [amount, setAmount] = useState(0);
 
-  function HandleCryptoBuy() {
-    buyCrypto(crypto.id, amount)
-      .then((res) => {
-        alert("success");
-        handleClose();
-      })
-      .catch((e) => console.log(e));
-  }
+  const { push } = useRouter();
 
+  const onSubmit = (data: cryptoProps) => {
+    console.log(data);
+
+    try {
+      buyCrypto(data, amount).then((res: any) => {
+        if (res.status === 200) {
+          if (typeof window !== "undefined") {
+            push("/crypto");
+          }
+        }
+      });
+    } catch (error: any) {
+      console.log(error);
+      setError("root", {
+        type: "manual",
+        message: error.response.data.message,
+      });
+    }
+  };
   return (
     <div>
       <button
@@ -42,32 +66,32 @@ export function BuyCryptoModal({ crypto }: { crypto: cryptoProps }) {
         onClose={handleClose}
         aria-labelledby='modal-modal-title'
         aria-describedby='modal-modal-description'>
-        <Box sx={style}>
-          <input
-            type='number'
-            onChange={(e) => {
-              setAmount(Number(e.target.value));
-            }}
-            className='text-black indent-3 border-2 border-black  w-full'
-            placeholder='how many tokens?'
-            required
-          />
-
-          <div className='flex items-center'>
-            <button
-              onClick={handleClose}
-              className='bg-red-400 text-white rounded-md text-center w-32 p-2 m-4 '>
-              Annuler
-            </button>
-            <button
-              className='bg-green-700 text-white rounded-md text-center w-32 p-2 m-4 '
-              onClick={() => {
-                HandleCryptoBuy();
-              }}>
-              Acheter
-            </button>
-          </div>
-        </Box>
+        <form
+          className='bg-#9ca3af shadow-md rounded px-8 pt-6 pb-8 mb-4 '
+          onSubmit={handleSubmit(onSubmit)}>
+          <Box sx={style}>
+            <input
+              type='number'
+              className='text-black indent-3 border-2 border-black  w-full'
+              placeholder='how many tokens?'
+              {...register("quantity", {
+                required: "field is mandatory",
+              })}
+            />
+            <div className='flex items-center'>
+              <button
+                onClick={handleClose}
+                className='bg-red-400 text-white rounded-md text-center w-32 p-2 m-4 '>
+                Cancel
+              </button>
+              <button
+                className='bg-green-700 text-white rounded-md text-center w-32 p-2 m-4 '
+                type='submit'>
+                Buy
+              </button>
+            </div>
+          </Box>
+        </form>
       </Modal>
     </div>
   );
