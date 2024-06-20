@@ -41,7 +41,7 @@ export function BuyCryptoModal() {
 
     try {
       buyCrypto(data).then((res: any) => {
-        if (res.status === 200) {
+        if (res.status === 201) {
           if (typeof window !== "undefined") {
             push("/crypto");
           }
