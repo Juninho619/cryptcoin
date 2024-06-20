@@ -52,7 +52,6 @@ const TradeCard = () => {
             </div>
           );
         })}
-      <CreateTrade />
     </div>
   );
 };

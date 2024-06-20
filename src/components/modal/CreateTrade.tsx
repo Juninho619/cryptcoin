@@ -1,3 +1,4 @@
+"use client";
 import { buyOffer } from "@/service/trade";
 import { tradeProps } from "@/utils/types";
 import { Box, Modal } from "@mui/material";
@@ -7,15 +8,15 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 function CreateTrade() {
-  const {
-    handleSubmit,
-    setError,
-    register,
-    formState: { errors },
-  } = useForm<tradeProps>({
-    mode: "all",
-    resolver: yupResolver(schema),
-  });
+  // const {
+  //   handleSubmit,
+  //   setError,
+  //   register,
+  //   formState: { errors },
+  // } = useForm<tradeProps>({
+  //   mode: "all",
+  //   resolver: yupResolver(schema),
+  // });
   const style = {
     position: "absolute" as "absolute",
     top: "50%",
@@ -32,14 +33,14 @@ function CreateTrade() {
   const handleClose = () => setOpen(false);
   const [tradeId, setTradeId] = useState<tradeProps>();
 
-  function handleUpdateOffer() {
-    buyOffer(tradeId)
-      .then((res) => {
-        alert("success");
-        handleClose();
-      })
-      .catch((e) => console.log(e));
-  }
+  // function handleUpdateOffer() {
+  //   buyOffer(tradeId)
+  //     .then((res) => {
+  //       alert("success");
+  //       handleClose();
+  //     })
+  //     .catch((e) => console.log(e));
+  // }
   return (
     <div>
       <button
@@ -54,18 +55,19 @@ function CreateTrade() {
         aria-describedby='modal-modal-description'>
         <input
           type='text'
-          onChange={(e) => e.target.value}
-          {...register("tradeId", {
-            required: "field is mandatory",
-          })}
+          // onChange={(e) => e.target.value}
+          // {...register("tradeId", {
+          //   required: "field is mandatory",
+          // })}
         />
         <Box sx={style}>
           <div className='flex items-center'>
             <button
               className='bg-green-700 text-white rounded-md text-center w-32 p-2 m-4 '
-              onClick={() => {
-                handleUpdateOffer();
-              }}>
+              // onClick={() => {
+              //   handleUpdateOffer();
+              // }}
+            >
               Update
             </button>
           </div>
