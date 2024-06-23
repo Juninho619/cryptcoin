@@ -5,9 +5,7 @@ const Header = () => {
     <div>
       <header className='flex border-b py-4 px-4 sm:px-10 bg-white font-[sans-serif] min-h-[70px] tracking-wide relative z-50'>
         <div className='flex flex-wrap items-center gap-5 w-full'>
-          <a href='javascript:void(0)'>
-            <img src='public\vercel.svg' alt='logo' className='w-36' />
-          </a>
+          <h1>Cryptcoin</h1>
 
           <div
             id='collapseMenu'

@@ -24,15 +24,6 @@ function RegisterForm() {
   } = useForm<authProps>({
     mode: "all",
     resolver: yupResolver(schema),
-    defaultValues: {
-      firstName: "JD",
-      lastName: "McDonagh",
-      email: "jdmcdonagh@mail.com",
-      pseudo: "JDisGod",
-      city: "Dublin",
-      promoCode: "PROMO1000",
-      password: "jdRulez7*",
-    },
   });
 
   const onSubmit = (data: authProps) => {
@@ -43,7 +34,7 @@ function RegisterForm() {
         if (res.status === 201) {
           if (typeof window !== "undefined") {
             window.localStorage.setItem("token", res.data.access_token);
-            push("/");
+            push("/crypto");
           }
         }
       });
