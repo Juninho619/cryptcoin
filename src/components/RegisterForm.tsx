@@ -3,10 +3,9 @@ import { registerUser } from "@/service/auth";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import React, { useState } from "react";
 import { authProps } from "@/utils/types";
-import { schema } from "@/validations/validationForm";
+import { schema } from "@/validations/validationForm"
 
 // {...register("first_name", {required:"ce champs est obligatoire",minLength:{value:5, message:"minimum 5 caracteres"}})}
 

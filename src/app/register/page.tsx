@@ -6,7 +6,7 @@ const page = () => {
   return (
     <div>
       <Header />
-      <RegisterForm></RegisterForm>
+      <RegisterForm/>
     </div>
   );
 };
