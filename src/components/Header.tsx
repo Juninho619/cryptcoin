@@ -3,7 +3,7 @@ import React from "react";
 const Header = () => {
   return (
     <div>
-      <header className='flex border-b py-4 px-4 sm:px-10 bg-[#00001a] font-[sans-serif] min-h-[70px] tracking-wide relative z-50'>
+      <header className='flex border-b py-4 px-4 sm:px-10 bg-[#00001a] font-[sans-serif] min-h-[70px] tracking-wide sticky'>
         <div className='flex flex-wrap items-center gap-5 w-full'>
           <h1 className="text-white">Cryptcoin</h1>
           <div
@@ -25,11 +25,6 @@ const Header = () => {
               </svg>
             </button>
             <ul className='lg:flex lg:ml-14 lg:gap-x-5 max-lg:space-y-3 max-lg:fixed max-lg:bg-white max-lg:w-1/2 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-6 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50'>
-              <li className='mb-6 hidden max-lg:block'>
-                <a href='javascript:void(0)'>
-                  <img src='public\vercel.svg' alt='logo' className='w-36' />
-                </a>
-              </li>
               <li className='max-lg:border-b max-lg:py-3 px-3'>
                 <a
                   href='./crypto'

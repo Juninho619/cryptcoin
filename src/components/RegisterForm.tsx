@@ -46,7 +46,7 @@ function RegisterForm() {
     }
   };
   return (
-    <div className='flex justify-center bg-#9ca3af '>
+    <div className='flex justify-center bg-[#ccccff] '>
       <div className='w-full max-w-xs'>
         <form
           className='bg-#9ca3af shadow-md rounded px-8 pt-6 pb-8 mb-4 '
