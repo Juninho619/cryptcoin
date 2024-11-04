@@ -1,4 +1,4 @@
-import { buyCryptoProps, cryptoProps } from "@/utils/types";
+import { buyCryptoProps, cryptoCreationProps, cryptoProps } from "@/utils/types";
 import axios from "axios";
 
 export async function getAllCrypto() {
@@ -29,7 +29,7 @@ export async function searchCrypto(cryptoName: string) {
   return data.products;
 }
 
-export async function buyCrypto(buyCryptoProps: buyCryptoProps) {
+export async function buyCrypto(buyCryptoProps: buyCryptoProps, cryptoId: string) {
   let url = `${process.env.NEXT_PUBLIC_API_URL}crypto/buy`;
 
   let axiosConfig = {
@@ -44,7 +44,7 @@ export async function buyCrypto(buyCryptoProps: buyCryptoProps) {
     .post(
       url,
       {
-        id_crypto: buyCryptoProps.id_crypto,
+        id_crypto: cryptoId,
         amount: buyCryptoProps.amount,
       },
       axiosConfig
@@ -57,7 +57,7 @@ export async function buyCrypto(buyCryptoProps: buyCryptoProps) {
     });
 }
 
-export async function createCrypto(cryptoProps: cryptoProps) {
+export async function createCrypto(cryptoProps: cryptoCreationProps) {
   let url = `${process.env.NEXT_PUBLIC_API_URL}crypto/create`;
 
   let axiosConfig = {

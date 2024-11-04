@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useState } from "react";
 import { authProps } from "@/utils/types";
 import { schema } from "@/validations/validationForm"
+import toast from "react-hot-toast";
 
 // {...register("first_name", {required:"ce champs est obligatoire",minLength:{value:5, message:"minimum 5 caracteres"}})}
 
@@ -33,6 +34,7 @@ function RegisterForm() {
         if (res.status === 201) {
           if (typeof window !== "undefined") {
             window.localStorage.setItem("token", res.data.access_token);
+            toast.success('Successfully created an account')
             push("/crypto");
           }
         }
@@ -43,6 +45,8 @@ function RegisterForm() {
         type: "manual",
         message: error.response.data.message,
       });
+      toast.error('Failed to create an account')
+
     }
   };
   return (
@@ -50,7 +54,7 @@ function RegisterForm() {
       <div className='w-full max-w-xs'>
         <h1>Sign up</h1>
         <form
-          className='bg-#9ca3af shadow-md rounded px-8 pt-6 pb-8 mb-4 '
+          className='bg-#9ca3af shadow-xl rounded px-8 pt-6 pb-8 mb-4 '
           onSubmit={handleSubmit(onSubmit)}>
           <div className='mb-4'>
             <label

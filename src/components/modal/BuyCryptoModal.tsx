@@ -6,8 +6,9 @@ import { Box, Modal } from "@mui/material";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
-export function BuyCryptoModal() {
+export function BuyCryptoModal({ cryptoId }: { cryptoId: string }) {
   const {
     handleSubmit,
     setError,
@@ -37,12 +38,11 @@ export function BuyCryptoModal() {
 
   const onSubmitBuy = (data: buyCryptoProps) => {
     console.log(data);
-    console.log("Hey!");
-
     try {
-      buyCrypto(data).then((res: any) => {
+      buyCrypto(data, cryptoId).then((res: any) => {
         if (res.status === 201) {
           if (typeof window !== "undefined") {
+            toast.success('Successfully bought')
             push("/crypto");
           }
         }
@@ -53,6 +53,7 @@ export function BuyCryptoModal() {
         type: "manual",
         message: error.response.data.message,
       });
+      toast.error(error)
     }
   };
   return (

@@ -1,6 +1,6 @@
 "use client";
 import { createCrypto } from "@/service/crypto";
-import { cryptoProps } from "@/utils/types";
+import { cryptoCreationProps } from "@/utils/types";
 import { schema } from "@/validations/validationCryptoForm";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
@@ -14,12 +14,12 @@ function CreateCrypto() {
     setError,
     register,
     formState: { errors },
-  } = useForm<cryptoProps>({
+  } = useForm<cryptoCreationProps>({
     mode: "all",
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: cryptoProps) => {
+  const onSubmit = (data: cryptoCreationProps) => {
     console.log(data);
 
     try {

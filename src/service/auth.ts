@@ -2,8 +2,7 @@ import { authProps, loginProps } from "@/utils/types";
 import axios from "axios";
 
 export async function registerUser(authProps: authProps) {
-  console.log("hey");
-
+  
   let url = `${process.env.NEXT_PUBLIC_API_URL}auth/signup`;
 
   let axiosConfig = {
