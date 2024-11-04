@@ -3,10 +3,9 @@ import { registerUser } from "@/service/auth";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import React, { useState } from "react";
 import { authProps } from "@/utils/types";
-import { schema } from "@/validations/validationForm";
+import { schema } from "@/validations/validationForm"
 
 // {...register("first_name", {required:"ce champs est obligatoire",minLength:{value:5, message:"minimum 5 caracteres"}})}
 
@@ -47,8 +46,9 @@ function RegisterForm() {
     }
   };
   return (
-    <div className='flex justify-center bg-#9ca3af '>
+    <div className='flex justify-center bg-[#ccccff] '>
       <div className='w-full max-w-xs'>
+        <h1>Sign up</h1>
         <form
           className='bg-#9ca3af shadow-md rounded px-8 pt-6 pb-8 mb-4 '
           onSubmit={handleSubmit(onSubmit)}>

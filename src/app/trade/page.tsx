@@ -1,5 +1,4 @@
 import Header from "@/components/Header";
-import CreateTrade from "@/components/modal/CreateTrade";
 import TradeCard from "@/components/trade.tsx/tradeCard";
 import React from "react";
 
@@ -8,7 +7,7 @@ const page = () => {
     <div>
       <Header />
       <TradeCard />
-      <CreateTrade />
+      {/* <CreateTrade /> */}
     </div>
   );
 };
