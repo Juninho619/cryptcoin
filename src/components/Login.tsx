@@ -34,6 +34,7 @@ function login() {
   return (
     <div>
       <div className='w-full max-w-xs'>
+        <h1>Sign in</h1>
         <form className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'>
           <div className='mb-4'>
             <label

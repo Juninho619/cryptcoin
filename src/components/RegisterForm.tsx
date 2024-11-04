@@ -48,6 +48,7 @@ function RegisterForm() {
   return (
     <div className='flex justify-center bg-[#ccccff] '>
       <div className='w-full max-w-xs'>
+        <h1>Sign up</h1>
         <form
           className='bg-#9ca3af shadow-md rounded px-8 pt-6 pb-8 mb-4 '
           onSubmit={handleSubmit(onSubmit)}>
