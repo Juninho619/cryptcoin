@@ -26,8 +26,16 @@ export type cryptoProps = {
   value?: number;
 };
 
+export type cryptoCreationProps = {
+  image: string;
+  name: string;
+  quantity: number;
+  value: number;
+}
+
+
+
 export type buyCryptoProps = {
-  id_crypto: string;
   amount: number;
 };
 

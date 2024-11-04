@@ -34,7 +34,7 @@ export function CryptoCard() {
               <p className='text-sm'>
                 Remaining Quantity on server: {element.quantity}
               </p>
-              <BuyCryptoModal />
+              <BuyCryptoModal cryptoId={element.id} />
             </div>
           );
         })}
