@@ -241,11 +241,6 @@ function RegisterForm() {
             Sign Up
           </button>
         </form>
-        <a
-          className='inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800'
-          href='#'>
-          Forgot Password?
-        </a>
         <p className='text-center text-gray-500 text-xs'></p>
       </div>
     </div>
