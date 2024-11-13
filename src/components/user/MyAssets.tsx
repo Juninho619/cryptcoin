@@ -24,7 +24,7 @@ export const MyAssets = () => {
       headerName: "Id",
       width: 350,
       renderCell: (params) => {
-        return <p>{params.row.id}</p>;
+        return <p>{params.row.Crypto.id}</p>;
       },
     },
     {
@@ -47,23 +47,16 @@ export const MyAssets = () => {
       field: "amount",
       headerName: "Amount",
       width: 150,
-    },
-    {
-      field: "G",
-      headerName: "Image",
-      width: 150,
       renderCell: (params) => {
-        return (
-          <img src={params.row.Crypto.Image} alt={params.row.Crypto.name} />
-        );
-      },
+        return <p>{params.row.Crypto.quantity}</p>
+      }
     },
   ];
   return (
     <div className='w-full'>
       {assetList && assetList.length > 0 && (
         <DataGrid
-          getRowId={(row) => row.id} 
+          getRowId={(row) => row.Crypto.id} 
           rows={assetList}
           columns={columns}
           style={{ minHeight: "100vh", width: "100%" }}
