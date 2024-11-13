@@ -46,6 +46,10 @@ export function BuyCryptoModal({ cryptoId }: { cryptoId: string }) {
             push("/crypto");
           }
         }
+        if (res.status !== 201){
+          const response = res.status
+          toast.error(response)
+        }
       });
     } catch (error: any) {
       console.log(error);

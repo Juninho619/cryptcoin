@@ -6,7 +6,7 @@ const page = () => {
   return (
     <div>
       <Header />
-      <CreateCrypto></CreateCrypto>
+      <CreateCrypto/>
     </div>
   );
 };

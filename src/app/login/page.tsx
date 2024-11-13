@@ -4,9 +4,10 @@ import React from "react";
 
 const page = () => {
   return (
-    <div>
-      <Header />
+     <div>
+    <main className='flex min-h-screen flex-col items-center justify-between p-24 bg-[#ccccff]'>
       <Login />
+    </main>
     </div>
   );
 };

@@ -8,11 +8,6 @@ import { authProps } from "@/utils/types";
 import { schema } from "@/validations/validationForm"
 import toast from "react-hot-toast";
 
-// {...register("first_name", {required:"ce champs est obligatoire",minLength:{value:5, message:"minimum 5 caracteres"}})}
-
-// regex email
-// /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
-
 function RegisterForm() {
   const { push } = useRouter();
 
@@ -241,11 +236,6 @@ function RegisterForm() {
             Sign Up
           </button>
         </form>
-        <a
-          className='inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800'
-          href='#'>
-          Forgot Password?
-        </a>
         <p className='text-center text-gray-500 text-xs'></p>
       </div>
     </div>

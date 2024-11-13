@@ -1,8 +1,8 @@
 import * as yup from "yup";
 
 export const schema = yup.object({
-  name: yup.string().required("nameless twat"),
-  value: yup.number().required("valueless twat"),
-  quantity: yup.number().required("quantityless twat"),
-  image: yup.string().required("imageless twat"),
+  name: yup.string().required("name missing"),
+  value: yup.number().required("value missing"),
+  quantity: yup.number().required("quantity missing"),
+  image: yup.string().required("image missing"),
 });

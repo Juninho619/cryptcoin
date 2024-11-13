@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 function CreateCrypto() {
   const { push } = useRouter();
@@ -20,19 +21,19 @@ function CreateCrypto() {
   });
 
   const onSubmit = (data: cryptoCreationProps) => {
-    console.log(data);
-
     try {
       createCrypto(data).then((res: any) => {
         if (res.status === 201) {
           if (typeof window !== "undefined") {
             window.localStorage.setItem("token", res.data.access_token);
+            toast.success('Successfully created currency')
             push("/crypto");
           }
         }
       });
     } catch (error: any) {
       console.log(error);
+      toast.error(error)
       setError("root", {
         type: "manual",
         message: error.response.data.message,
@@ -42,7 +43,6 @@ function CreateCrypto() {
 
   return (
     <div>
-      {" "}
       <div className='flex justify-center bg-#9ca3af '>
         <div className='w-full max-w-xs'>
           <form
@@ -51,7 +51,7 @@ function CreateCrypto() {
             <div className='mb-4'>
               <label
                 className='block text-gray-700 text-sm font-bold mb-2'
-                htmlFor='first name'>
+                htmlFor='name'>
                 Name
               </label>
               <input
