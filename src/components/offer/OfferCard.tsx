@@ -21,10 +21,26 @@ export const OfferCard = () => {
   const columns: GridColDef[] = [
     {
       field: "A",
-      headerName: "Id",
+      headerName: "Amount",
       width: 350,
       renderCell: (params) => {
-        return <p>{params.row.Crypto.id}</p>;
+        return <p>{params.row.amount}</p>;
+      },
+    },
+    {
+      field: "B",
+      headerName: "created_at",
+      width: 350,
+      renderCell: (params) => {
+        return <p>{params.row.created_at}</p>;
+      },
+    },
+    {
+      field: "C",
+      headerName: "updated_at",
+      width: 350,
+      renderCell: (params) => {
+        return <p>{params.row.updated_at}</p>;
       },
     },
   ]
