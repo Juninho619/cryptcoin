@@ -7,12 +7,10 @@ import React, { useEffect, useState } from "react";
 export const MyAssets = () => {
   const [assetList, setAssetList] = useState<userAssetsProps[]>();
  
-
   useEffect(() => {
     myAssets()
       .then((res) => {
         console.log(res);
-
         setAssetList(res.UserHasCrypto);
       })
       .catch((e) => {
