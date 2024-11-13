@@ -1,12 +1,12 @@
 "use client";
 import { myAssets } from "@/service/user";
-import { cryptoProps, userAssetsProps } from "@/utils/types";
+import { userAssetsProps } from "@/utils/types";
 import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
 import React, { useEffect, useState } from "react";
 
 export const MyAssets = () => {
   const [assetList, setAssetList] = useState<userAssetsProps[]>();
-  const [cryptoList, setCryptoList] = useState<cryptoProps>();
+ 
 
   useEffect(() => {
     myAssets()
@@ -65,6 +65,7 @@ export const MyAssets = () => {
     <div className='w-full'>
       {assetList && assetList.length > 0 && (
         <DataGrid
+          getRowId={(row) => row.id} 
           rows={assetList}
           columns={columns}
           style={{ minHeight: "100vh", width: "100%" }}
