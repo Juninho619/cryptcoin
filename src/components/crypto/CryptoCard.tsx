@@ -6,7 +6,7 @@ import { BuyCryptoModal } from "../modal/BuyCryptoModal";
 export function CryptoCard() {
   const [cryptoList, setCryptoList] = useState<cryptoProps[]>();
   const [loading, setloading] = useState<boolean>(false);
-  console.log({ data: cryptoList });
+
   useEffect(() => {
     getAllCrypto()
       .then((res) => {

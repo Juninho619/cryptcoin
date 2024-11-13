@@ -3,6 +3,7 @@ import { myAssets } from "@/service/user";
 import { userAssetsProps } from "@/utils/types";
 import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
 import React, { useEffect, useState } from "react";
+import CreateOffer from "../modal/CreateOffer";
 
 export const MyAssets = () => {
   const [assetList, setAssetList] = useState<userAssetsProps[]>();
@@ -49,6 +50,14 @@ export const MyAssets = () => {
       width: 150,
       renderCell: (params) => {
         return <p>{params.row.Crypto.quantity}</p>
+      }
+    },
+    {
+      field: "Sell",
+      headerName: "Sell",
+      width: 150,
+      renderCell: (params) => {
+        return <CreateOffer cryptoId={params.row.Crypto.id}/>
       }
     },
   ];

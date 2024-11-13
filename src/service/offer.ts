@@ -1,4 +1,4 @@
-import { OffersProps, buyCryptoProps } from "@/utils/types";
+import { OffersProps, buyCryptoProps, createOfferProps } from "@/utils/types";
 import axios from "axios";
 
 export async function getAllOffers() {
@@ -26,8 +26,8 @@ export async function getAllOffers() {
     });
 }
 
-export async function createOffer(OffersProps: OffersProps) {
-  let url = `${process.env.NEXT_PUBLIC_API_URL}offer/all`;
+export async function createOffer(createOfferProps: createOfferProps, cryptoId: string) {
+  let url = `${process.env.NEXT_PUBLIC_API_URL}offer/create`;
 
   let axiosConfig = {
     headers: {
@@ -40,7 +40,9 @@ export async function createOffer(OffersProps: OffersProps) {
   return axios
     .post(
       url,
-      { id_crypto: OffersProps.id, amount: OffersProps.amount },
+      { amount: createOfferProps.amount,
+        id_crypto: cryptoId
+       },
       axiosConfig
     )
     .then((res) => {
@@ -51,7 +53,7 @@ export async function createOffer(OffersProps: OffersProps) {
     });
 }
 
-export async function updateOffer(buyCryptoProps: buyCryptoProps, idOffer) {
+export async function updateOffer(buyCryptoProps: buyCryptoProps, idOffer: string) {
   let url = `${process.env.NEXT_PUBLIC_API_URL}offer/update/${idOffer}`;
 
   let axiosConfig = {

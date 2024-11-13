@@ -50,6 +50,10 @@ export type OffersProps = {
   Crypto: cryptoProps;
 };
 
+export type createOfferProps = {
+  amount: number;
+}
+
 export type userAssetsProps = {
   firstName?: string;
   lastName?: string;
