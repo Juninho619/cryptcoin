@@ -1,3 +1,4 @@
+'use client'
 import { createOffer } from '@/service/offer';
 import { createOfferProps } from '@/utils/types';
 import { schema } from '@/validations/validationOfferForm';

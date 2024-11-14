@@ -80,3 +80,7 @@ export type tradeProps = {
   Receiver: authProps;
   Crypto: cryptoProps;
 };
+
+export type createTradeProps = {
+  idOffer: string
+}

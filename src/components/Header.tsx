@@ -1,11 +1,24 @@
-import React from "react";
+'use client'
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { FaPowerOff } from "react-icons/fa6";
+import { jwtDecode, JwtPayload } from "jwt-decode";
 
 const Header = () => {
+  const { push } = useRouter();
+  const [username, setUsername] = useState('')
+
+  // function disconnect(){
+  //   localStorage.removeItem('token')
+  // }
+
   return (
     <div>
       <header className='flex border-b py-4 px-4 sm:px-10 bg-[#00001a] font-[sans-serif] min-h-[70px] tracking-wide sticky'>
         <div className='flex flex-wrap items-center gap-5 w-full'>
-          <h1 className="text-white">Cryptcoin</h1>
+          <h1 className="text-white" onClick={()=>{
+            push('/crypto')
+          }}>Cryptcoin</h1>
           <div
             id='collapseMenu'
             className='max-lg:hidden lg:!block max-lg:w-full max-lg:fixed max-lg:before:fixed max-lg:before:bg-black max-lg:before:opacity-50 max-lg:before:inset-0 max-lg:before:z-50'>
@@ -41,32 +54,18 @@ const Header = () => {
               </li>
               <li className='max-lg:border-b max-lg:py-3 px-3'>
                 <a
-                  href='./trade'
+                  href='./my-assets'
                   className='lg:hover:text-[#007bff] text-white block font-semibold text-[15px]'>
-                  Trades
-                </a>
-              </li>
-              <li className='max-lg:border-b max-lg:py-3 px-3'>
-                <a
-                  href='./promo'
-                  className='lg:hover:text-[#007bff] text-white block font-semibold text-[15px]'>
-                  Promo code
+                  My Assets
                 </a>
               </li>
             </ul>
           </div>
-          <button id='toggleOpen' className='lg:hidden ml-auto'>
-            <svg
-              className='w-7 h-7'
-              fill='#000'
-              viewBox='0 0 20 20'
-              xmlns='http://www.w3.org/2000/svg'>
-              <path
-                fill-rule='evenodd'
-                d='M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z'
-                clip-rule='evenodd'></path>
-            </svg>
-          </button>
+          </div>
+          <div className="flex items-end text-white">
+          {/* add icon disconnect
+          Hi, pseudo */}
+          <FaPowerOff/>
           </div>
       </header>
     </div>
