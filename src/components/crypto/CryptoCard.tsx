@@ -22,7 +22,7 @@ export function CryptoCard() {
       {loading &&
         cryptoList?.map((element) => {
           return (
-            <div>
+            <div key={element.id}>
               <img
                 src={element.image}
                 alt={element.name}
