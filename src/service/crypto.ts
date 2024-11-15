@@ -3,6 +3,7 @@ import axios from "axios";
 
 export async function getAllCrypto() {
   let url = `${process.env.NEXT_PUBLIC_API_URL}crypto/all`;
+
   let axiosConfig = {
     headers: {
       "content-type": "application/x-www-form-urlencoded;charset=utf-8",
@@ -24,9 +25,26 @@ export async function getAllCrypto() {
 
 export async function searchCrypto(cryptoName: string) {
   let url = `${process.env.NEXT_PUBLIC_API_URL}crypto/search/${cryptoName}`;
-  const result = await axios.get(url);
-  const data = result.data;
-  return data.products;
+
+  let axiosConfig = {
+    headers: {
+      "content-type": "application/x-www-form-urlencoded;charset=utf-8",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  };
+
+  return await axios
+    .get(url, axiosConfig)
+    .then((res) => {
+      return res.data;
+    })
+    .catch((e) => {
+      throw new Error(e);
+    });
+
+
 }
 
 export async function buyCrypto(buyCryptoProps: buyCryptoProps, cryptoId: string) {

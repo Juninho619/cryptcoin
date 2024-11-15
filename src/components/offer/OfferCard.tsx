@@ -1,53 +1,78 @@
-"use client";
-import { OffersProps } from "@/utils/types";
-import React, { Dispatch, SetStateAction } from "react";
-import toast from "react-hot-toast";
+'use client'
+import { getAllOffers } from '@/service/offer';
+import { OffersProps } from '@/utils/types'
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import React, { useEffect, useState } from 'react'
+import BuyFromOfferModal from '../modal/BuyFromOfferModal';
 
-import { CryptoCard } from "../crypto/CryptoCard";
-import { buyOffer } from "@/service/trade";
+export const OfferCard = () => {
+  const [offerList, setOfferList] = useState<OffersProps[]>([]);
 
-export function OfferCard({
-  offer,
-  setIsReloadNeeded,
-}: {
-  offer: OffersProps;
-  setIsReloadNeeded: Dispatch<SetStateAction<boolean>>;
-}) {
-  function handleCryptoBuyViaOffer(offerId: string) {
-    buyOffer(offerId)
+  useEffect(() => {
+    getAllOffers()
       .then((res) => {
-        if (res.data) {
-          if (res.status === 204) {
-            toast.error("Item already sold");
-          }
+        console.log(res);
+        const newOfferList = res.data.map((item) => ({
+          id: item.id,
+          name: item.Crypto.name,
+          value: item.Crypto.value,
+          amount: item.amount,
+          created_at: item.created_at,
+        }));
 
-          if (res.status === 201) {
-            toast.success("Success");
-            setIsReloadNeeded(true);
-          }
-        }
+        console.log(newOfferList);
+
+        setOfferList(newOfferList);
       })
       .catch((e) => {
-        if (e) {
-          toast.error("error");
-          console.log(e);
-        }
+        console.log(e);
       });
-  }
+  }, []);
+
+  const columns: GridColDef[] = [
+    {
+      field: "name",
+      headerName: "Name",
+      width: 150,
+    },
+    {
+      field: "value",
+      headerName: "Value",
+      width: 150,
+    },
+    {
+      field: "amount",
+      headerName: "Amount",
+      width: 150,
+    },
+    {
+      field: "created_at",
+      headerName: "Created At",
+      width: 200,
+    },
+    {
+      field: "Buy",
+      headerName: "Buy",
+      width: 200,
+      renderCell: (params) => {
+        return <BuyFromOfferModal offerId={params.row.id}/>
+      }
+    },
+  ];
+
   return (
-    <div className='w-full flex justify-end'>
-      <p>Number of tokens: {offer.amount}</p>
-      <p>Seller: {offer.User.pseudo}</p>
-      {/* <CryptoCard crypto={offer.Crypto} isBuyVisible={false} /> */}
-      <div>
-        <button
-          className='bg-white text-center rounded-lg text-indigo-600 w-20 p-1 text-sm mt-1'
-          onClick={() => {
-            handleCryptoBuyViaOffer(offer.id);
-          }}>
-          Buy
-        </button>
+    <div>
+      <h1>Offers</h1>
+      <div className='w-full'>
+        {offerList && offerList.length > 0 && (
+          <DataGrid
+            getRowId={(row) => row.id}
+            rows={offerList}
+            columns={columns}
+            style={{ minHeight: "100vh", width: "100%" }}
+          />
+        )}
       </div>
     </div>
-  );
+  )
 }

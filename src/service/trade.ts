@@ -1,3 +1,4 @@
+import { createTradeProps } from "@/utils/types";
 import axios from "axios";
 
 export async function getAllTrades() {
@@ -21,7 +22,7 @@ export async function getAllTrades() {
     });
 }
 
-export async function buyOffer(id_offer: string) {
+export async function buyOffer(offerId: string) {
   let url = `${process.env.NEXT_PUBLIC_API_URL}trade/create`;
 
   let axiosConfig = {
@@ -33,7 +34,7 @@ export async function buyOffer(id_offer: string) {
     },
   };
   return axios
-    .post(url, { id_offer: id_offer }, axiosConfig)
+    .post(url, { id_offer: offerId }, axiosConfig)
     .then((res) => {
       return res;
     })

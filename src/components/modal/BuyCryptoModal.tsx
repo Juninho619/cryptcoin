@@ -91,6 +91,9 @@ export function BuyCryptoModal({ cryptoId }: { cryptoId: string }) {
                 Cancel
               </button>
               <button
+              onClick={()=>{
+                setTimeout(handleClose, 1000)
+              }}
                 className='bg-green-700 text-white rounded-md text-center w-32 p-2 m-4 '
                 type='submit'>
                 Buy

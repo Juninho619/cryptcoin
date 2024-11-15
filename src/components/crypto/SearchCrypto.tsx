@@ -2,9 +2,11 @@
 import { searchCrypto } from "@/service/crypto";
 import { cryptoProps } from "@/utils/types";
 import React, { useEffect, useRef, useState } from "react";
+import { BuyCryptoModal } from "../modal/BuyCryptoModal";
 
 function SearchCrypto() {
-  const [crypto, setCrypto] = useState<cryptoProps[]>([]);
+  const [cryptoList, setCryptoList] = useState<cryptoProps[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const refInput = useRef<HTMLInputElement>();
 
@@ -12,8 +14,9 @@ function SearchCrypto() {
   useEffect(() => {
     const handler = setTimeout(() => {
       if (searchInput) {
+        setIsLoading(true)
         searchCrypto(searchInput).then((data) => {
-          setCrypto(data);
+        setCryptoList(data);
         });
       }
     }, 500);
@@ -21,7 +24,7 @@ function SearchCrypto() {
     return () => {
       clearTimeout(handler);
     };
-  }, [searchInput, setCrypto]);
+  }, [searchInput, setCryptoList]);
 
   const handleSearch = (e: any) => {
     setsearchInput(e.target.value);
@@ -34,6 +37,25 @@ function SearchCrypto() {
         onChange={handleSearch}
       />
       <button className='border border-sky-500'>Search</button>
+      {isLoading &&
+        cryptoList?.map((element) => {
+          return (
+            <div>
+              <img
+                src={element.image}
+                alt={element.name}
+                className='w-full h-48 object-cover'
+              />
+              <p>{element.name}</p>
+
+              <p className='text-sm'>Value: {element.value}</p>
+              <p className='text-sm'>
+                Remaining Quantity on server: {element.quantity}
+              </p>
+              <BuyCryptoModal cryptoId={element.id} />
+            </div>
+          );
+        })}
     </div>
   );
 }
