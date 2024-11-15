@@ -6,22 +6,23 @@ import React, { useEffect, useState } from 'react'
 import BuyFromOfferModal from '../modal/BuyFromOfferModal';
 
 export const OfferCard = () => {
-  const [offerList, setOfferList] = useState<OffersProps[]>();
-  const [offerId, setOfferId] = useState('')
+  const [offerList, setOfferList] = useState<OffersProps[]>([]);
 
   useEffect(() => {
     getAllOffers()
       .then((res) => {
         console.log(res);
         const newOfferList = res.data.map((item) => ({
-          id: item.Crypto.id,
+          id: item.id,
           name: item.Crypto.name,
           value: item.Crypto.value,
           amount: item.amount,
           created_at: item.created_at,
         }));
+
+        console.log(newOfferList);
+
         setOfferList(newOfferList);
-        setOfferId(newOfferList.id)
       })
       .catch((e) => {
         console.log(e);
@@ -53,25 +54,25 @@ export const OfferCard = () => {
       field: "Buy",
       headerName: "Buy",
       width: 200,
-      renderCell: () => {
-        return <BuyFromOfferModal offerId={offerId}/>
+      renderCell: (params) => {
+        return <BuyFromOfferModal offerId={params.row.id}/>
       }
     },
   ];
+
   return (
     <div>
       <h1>Offers</h1>
       <div className='w-full'>
         {offerList && offerList.length > 0 && (
           <DataGrid
-          getRowId={(row) => row.id} 
-          rows={offerList}
-          columns={columns}
-          style={{ minHeight: "100vh", width: "100%" }}
-        />
+            getRowId={(row) => row.id}
+            rows={offerList}
+            columns={columns}
+            style={{ minHeight: "100vh", width: "100%" }}
+          />
         )}
       </div>
     </div>
   )
 }
-
