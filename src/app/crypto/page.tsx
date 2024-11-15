@@ -13,7 +13,6 @@ function CryptoCards() {
       <div>
         <Header />
         <CryptoCard />
-        <SearchCrypto />
       </div>
     </>
   );
