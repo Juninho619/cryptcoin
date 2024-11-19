@@ -2,11 +2,33 @@
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FaPowerOff } from "react-icons/fa6";
-import { jwtDecode, JwtPayload } from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
+import { log } from "console";
+
+interface JwtPayload {
+  sub: string;
+  iat: number;
+  exp: number;
+  username: string; 
+}
+
 
 const Header = () => {
   const { push } = useRouter();
   const [username, setUsername] = useState('')
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      const decoded = jwtDecode<JwtPayload>(token);
+      setUsername(decoded.username);
+      console.log(decoded);
+      
+    } if(!token) {
+      console.error('Token not found in localStorage');
+    }
+  }, []);
 
   // function disconnect(){
   //   localStorage.removeItem('token')
@@ -65,7 +87,8 @@ const Header = () => {
           <div className="flex items-end text-white">
           {/* add icon disconnect
           Hi, pseudo */}
-          <FaPowerOff/>
+          <p>Hey, {username}</p>
+          <FaPowerOff className="hover:bg-red-600"/>
           </div>
       </header>
     </div>

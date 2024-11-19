@@ -3,6 +3,9 @@
 export default function Home() {
   return (
     <div className="min-h-screen  bg-[#00001a]  text-gray-800">
+      <head>
+        <title>Cryptcoin</title>
+      </head>
       <header className="bg-blue-900 text-white py-4">
         <nav className="container mx-auto flex justify-between items-center px-6">
           <div className="text-2xl font-bold">Cryptcoin</div>

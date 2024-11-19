@@ -55,10 +55,7 @@ const BuyFromOfferModal = ({offerId}: {offerId: string}) => {
                   })
                   .catch((e) => {
                     toast.error('Nope')
-                    console.log(e);
-                  console.log({'id': offerId,});
-                  console.log({});
-                  
+                    console.log(e);                  
                     handleClose()
                   });
               }}
