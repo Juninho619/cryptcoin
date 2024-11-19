@@ -29,6 +29,8 @@ function CreateCrypto() {
             toast.success('Successfully created currency')
             push("/crypto");
           }
+        } else {
+          toast.error('Unauthorized')
         }
       });
     } catch (error: any) {

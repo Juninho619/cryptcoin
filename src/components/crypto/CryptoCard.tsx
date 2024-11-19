@@ -2,16 +2,17 @@ import { cryptoProps } from "@/utils/types";
 import React, { useEffect, useState } from "react";
 import { getAllCrypto } from "@/service/crypto";
 import { BuyCryptoModal } from "../modal/BuyCryptoModal";
+import { DNA } from "react-loader-spinner"
 
 export function CryptoCard() {
   const [cryptoList, setCryptoList] = useState<cryptoProps[]>();
   const [loading, setloading] = useState<boolean>(false);
 
   useEffect(() => {
+    setloading(true)
     getAllCrypto()
-      .then((res) => {
+      .then((res) => { 
         setCryptoList(res);
-        setloading(true);
       })
       .catch((e) => {
         console.log(e);
@@ -23,6 +24,14 @@ export function CryptoCard() {
         cryptoList?.map((element) => {
           return (
             <div key={element.id}>
+              {/* <DNA
+  visible={true}
+  height="80"
+  width="80"
+  ariaLabel="dna-loading"
+  wrapperStyle={{}}
+  wrapperClass="dna-wrapper"
+  /> */}
               <img
                 src={element.image}
                 alt={element.name}

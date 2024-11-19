@@ -25,7 +25,7 @@ const Header = () => {
       setUsername(decoded.username);
       console.log(decoded);
       
-    } else {
+    } if(!token) {
       console.error('Token not found in localStorage');
     }
   }, []);
@@ -88,7 +88,7 @@ const Header = () => {
           {/* add icon disconnect
           Hi, pseudo */}
           <p>Hey, {username}</p>
-          <FaPowerOff/>
+          <FaPowerOff className="hover:bg-red-600"/>
           </div>
       </header>
     </div>
