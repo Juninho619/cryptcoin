@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FaPowerOff } from "react-icons/fa6";
 import { jwtDecode } from "jwt-decode";
-import { log } from "console";
+import toast from "react-hot-toast";
 
 interface JwtPayload {
   sub: string;
@@ -26,13 +26,14 @@ const Header = () => {
       console.log(decoded);
       
     } if(!token) {
-      console.error('Token not found in localStorage');
+      toast.error('Redirecting to homepage')
+      push('/')
     }
   }, []);
 
-  // function disconnect(){
-  //   localStorage.removeItem('token')
-  // }
+  function disconnect(){
+  localStorage.removeItem('token')
+  }
 
   return (
     <div>
@@ -85,10 +86,8 @@ const Header = () => {
           </div>
           </div>
           <div className="flex items-end text-white">
-          {/* add icon disconnect
-          Hi, pseudo */}
           <p>Hey, {username}</p>
-          <FaPowerOff className="hover:bg-red-600"/>
+          <FaPowerOff className="hover:bg-red-600" onClick={disconnect}/>
           </div>
       </header>
     </div>
