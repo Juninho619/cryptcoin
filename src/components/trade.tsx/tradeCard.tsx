@@ -2,7 +2,6 @@
 import { getAllTrades } from "@/service/trade";
 import { tradeProps } from "@/utils/types";
 import React, { useEffect, useState } from "react";
-import CreateTrade from "../modal/CreateTrade";
 
 const TradeCard = () => {
   const [tradeList, setTradeList] = useState<tradeProps[]>();
