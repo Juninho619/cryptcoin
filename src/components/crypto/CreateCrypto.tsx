@@ -25,9 +25,9 @@ function CreateCrypto() {
       createCrypto(data).then((res: any) => {
         if (res.status === 201) {
           if (typeof window !== "undefined") {
-            window.localStorage.setItem("token", res.data.access_token);
+            // window.localStorage.setItem("token", res.data.access_token);
             toast.success('Successfully created currency')
-            push("/crypto");
+            window.location.reload()
           }
         } else {
           toast.error('Unauthorized')
