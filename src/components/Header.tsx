@@ -133,6 +133,14 @@ const Header = () => {
               Users Assets
             </a>
           </MenuItem>
+          <MenuItem>
+            <a
+              href="/crypto-edit"
+              className="block px-4 py-2 text-sm text-black data-[focus]:bg-gray-100 data-[focus]:text-black data-[focus]:outline-none"
+            >
+              Edit Crypto
+            </a>
+          </MenuItem>
           <form action="#" method="POST">
           </form>
         </div>

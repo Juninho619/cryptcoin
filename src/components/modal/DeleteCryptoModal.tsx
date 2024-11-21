@@ -51,7 +51,8 @@ function DeleteCryptoModal({cryptoId}: {cryptoId : string}) {
                   .then((res) => {
                     if (res.status === 204) {
                       toast.success("Successfully deleted!");
-                     window.location.reload()
+                      handleClose()
+                
                     }
                   })
                   .catch((e) => {
