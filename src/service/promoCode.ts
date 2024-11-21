@@ -1,4 +1,4 @@
-import { promoCodeProps, updatePromoCodeProps } from "@/utils/types";
+import { createPromoCodeProps, promoCodeProps, updatePromoCodeProps } from "@/utils/types";
 import axios from "axios";
 
 export async function getAllPromo() {
@@ -22,7 +22,7 @@ export async function getAllPromo() {
     });
 }
 
-export async function createPromo(promoCodeProps: promoCodeProps) {
+export async function createPromo(promoCodeProps: createPromoCodeProps) {
   let url = `${process.env.NEXT_PUBLIC_API_URL}promoCode/create`;
   let axiosConfig = {
     headers: {
@@ -43,7 +43,7 @@ export async function createPromo(promoCodeProps: promoCodeProps) {
       axiosConfig
     )
     .then((res) => {
-      return res.data;
+      return res
     })
     .catch((e) => {
       throw new Error(e);
@@ -90,7 +90,6 @@ export async function deletePromoCode(id: string) {
   return axios
     .delete(
       url,
-
       axiosConfig
     )
     .then((res) => {

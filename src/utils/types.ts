@@ -80,6 +80,11 @@ export type updatePromoCodeProps = {
   value?: number
 }
 
+export type createPromoCodeProps = {
+  name: string;
+  value: number
+}
+
 export type tradeProps = {
   id?: string;
   Giver: authProps;

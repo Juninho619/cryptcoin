@@ -7,6 +7,8 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { MdOutlineEdit } from "react-icons/md";
+
 
 function UpdatePromoModal({ promoId }: { promoId: string }) {
   const {
@@ -43,7 +45,7 @@ function UpdatePromoModal({ promoId }: { promoId: string }) {
         if (res.status === 200) {
           if (typeof window !== "undefined") {
             toast.success('Successfully edited');
-            push("/promo");
+            window.location.reload()
           }
         }
         if (res.status !== 200) {
@@ -69,6 +71,7 @@ function UpdatePromoModal({ promoId }: { promoId: string }) {
         onClick={handleOpen}
         className='bg-emerald-700 text-center rounded-lg text-white w-20 p-1 text-sm mt-1'>
         Edit
+        <MdOutlineEdit />
       </button>
       <Modal
         open={open}

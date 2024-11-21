@@ -2,6 +2,7 @@ import { deletePromoCode } from '@/service/promoCode';
 import { Box, Modal } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
+import { CiTrash } from "react-icons/ci";
 import toast from 'react-hot-toast';
 
 function DeletePromoModal({promoId}: {promoId: string}) {
@@ -28,6 +29,7 @@ function DeletePromoModal({promoId}: {promoId: string}) {
       onClick={handleOpen}
       className='bg-red-700 text-center rounded-lg text-white w-20 p-1 text-sm mt-1'>
       Delete{" "}
+      <CiTrash />
     </button>
     <Modal
       open={open}
