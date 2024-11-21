@@ -1,3 +1,4 @@
+'use client'
 import { getAllCrypto } from '@/service/crypto';
 import { cryptoProps } from '@/utils/types';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
