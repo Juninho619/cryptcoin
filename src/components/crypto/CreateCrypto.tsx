@@ -27,7 +27,9 @@ function CreateCrypto() {
           if (typeof window !== "undefined") {
             // window.localStorage.setItem("token", res.data.access_token);
             toast.success('Successfully created currency')
-            window.location.reload()
+            setTimeout(function(){
+              window.location.reload()
+            }, 2000)        
           }
         } else {
           toast.error('Unauthorized')
