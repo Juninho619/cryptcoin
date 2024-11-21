@@ -15,6 +15,9 @@ export default function Home() {
             <h1 className="text-4xl md:text-6xl font-bold mb-4">Welcome to Cryptcoin</h1>
             <p className="text-lg md:text-2xl mb-6">Invest in yourself</p>
             <a href="register" className="bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-700">Get Started</a>
+            <div className='flex items-end'>
+              <a href="/login">Login</a>
+            </div>
           </div>
         </header>
         <section id="about" className="container mx-auto py-20 px-6 text-center text-white">
