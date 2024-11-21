@@ -4,6 +4,7 @@ import { promoCodeProps } from '@/utils/types'
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import React, { useEffect, useState } from 'react'
 import UpdatePromoModal from '../modal/UpdatePromoModal';
+import DeletePromoModal from '../modal/DeletePromoModal';
 
 function PromoGrid() {
     const [promoList, setPromoList] = useState<promoCodeProps[]>([])
@@ -35,6 +36,14 @@ function PromoGrid() {
           width: 150,
           renderCell: (params) => {
             return <UpdatePromoModal promoId={params.row.id}/>
+          }
+        },
+        {
+          field: "Delete",
+          headerName: "Delete",
+          width: 150,
+          renderCell: (params) => {
+            return <DeletePromoModal promoId={params.row.id}/>
           }
         },
         
