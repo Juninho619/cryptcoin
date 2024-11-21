@@ -1,19 +1,32 @@
 "use client";
 import { usersAssets } from "@/service/user";
-import { cryptoProps, userAssetsProps } from "@/utils/types";
 import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export const UserAssets = () => {
-  const [assetList, setAssetList] = useState<userAssetsProps[]>();
-  const [cryptoList, setCryptoList] = useState<cryptoProps>();
+  const [assetList, setAssetList] = useState<[]>([]);
+  const { push } = useRouter();
 
   useEffect(() => {
     usersAssets()
       .then((res) => {
+        if (res.status === 403){
+          toast.error('Unauthorized')
+          push('/crypto')
+        }
         console.log(res);
-
-        setAssetList(res.UserHasCrypto);
+        const flattenedData = res.flatMap((user) =>
+          user.UserHasCrypto.map((crypto) => ({
+            pseudo: user.pseudo,
+            dollarAvailables: user.dollarAvailables,
+            cryptoName: crypto.Crypto.name,
+            cryptoValue: crypto.Crypto.value,
+            amount: crypto.amount,
+          }))
+        );
+        setAssetList(flattenedData);
       })
       .catch((e) => {
         console.log(e);
@@ -22,51 +35,43 @@ export const UserAssets = () => {
 
   const columns: GridColDef[] = [
     {
-      field: "A",
-      headerName: "Id",
-      width: 350,
-      renderCell: (params) => {
-        return <p>{params.row.id}</p>;
-      },
+      field: "pseudo",
+      headerName: "Pseudo",
+      width: 150,
     },
     {
-      field: "B",
+      field: "dollarAvailables",
+      headerName: "Dollars",
+      width: 150,
+    },
+    {
+      field: "cryptoName",
       headerName: "Name",
       width: 150,
-      renderCell: (params) => {
-        return <p>{params.row.Crypto.name}</p>;
-      },
     },
     {
-      field: "C",
+      field: "cryptoValue",
       headerName: "Money",
       width: 250,
-      renderCell: (params) => {
-        return <p>{params.row.Crypto.value}</p>;
-      },
     },
     {
       field: "amount",
       headerName: "Amount",
       width: 150,
     },
-    {
-      field: "G",
-      headerName: "Image",
-      width: 150,
-      renderCell: (params) => {
-        return (
-          <img src={params.row.Crypto.Image} alt={params.row.Crypto.name} />
-        );
-      },
-    },
   ];
+
+  const getRowId = (row: any) => {
+    return `${row.pseudo}-${row.cryptoName}`;
+  };
+
   return (
     <div className='w-full'>
       {assetList && assetList.length > 0 && (
         <DataGrid
           rows={assetList}
           columns={columns}
+          getRowId={getRowId}
           style={{ minHeight: "100vh", width: "100%" }}
         />
       )}

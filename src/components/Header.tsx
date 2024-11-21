@@ -3,44 +3,49 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FaPowerOff } from "react-icons/fa6";
 import { jwtDecode } from "jwt-decode";
-import { log } from "console";
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
+
+import toast from "react-hot-toast";
 
 interface JwtPayload {
   sub: string;
   iat: number;
   exp: number;
-  username: string; 
+  username: string;
 }
-
 
 const Header = () => {
   const { push } = useRouter();
-  const [username, setUsername] = useState('')
+  const [username, setUsername] = useState('');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
 
     if (token) {
-      const decoded = jwtDecode<JwtPayload>(token);
-      setUsername(decoded.username);
-      console.log(decoded);
-      
-    } if(!token) {
-      console.error('Token not found in localStorage');
+      try {
+        const decoded = jwtDecode<JwtPayload>(token);
+        setUsername(decoded.username);
+      } catch (error) {
+        toast.error('Invalid token. Redirecting to homepage');
+        push('/');
+      }
+    } else {
+      toast.error('Disconnected. Redirecting to homepage');
+      push('/');
     }
-  }, []);
+  }, [push]);
 
-  // function disconnect(){
-  //   localStorage.removeItem('token')
-  // }
+  function disconnect() {
+    localStorage.removeItem('token');
+    push('/');
+  }
 
   return (
     <div>
       <header className='flex border-b py-4 px-4 sm:px-10 bg-[#00001a] font-[sans-serif] min-h-[70px] tracking-wide sticky'>
         <div className='flex flex-wrap items-center gap-5 w-full'>
-          <h1 className="text-white" onClick={()=>{
-            push('/crypto')
-          }}>Cryptcoin</h1>
+          <h1 className="text-white" onClick={() => push('/crypto')}>Cryptcoin</h1>
           <div
             id='collapseMenu'
             className='max-lg:hidden lg:!block max-lg:w-full max-lg:fixed max-lg:before:fixed max-lg:before:bg-black max-lg:before:opacity-50 max-lg:before:inset-0 max-lg:before:z-50'>
@@ -81,15 +86,65 @@ const Header = () => {
                   My Assets
                 </a>
               </li>
+              <li className='max-lg:border-b max-lg:py-3 px-3'>
+                <a
+                  href='./my-trades'
+                  className='lg:hover:text-[#007bff] text-white block font-semibold text-[15px]'>
+                  My Trades
+                </a>
+              </li>
             </ul>
           </div>
-          </div>
-          <div className="flex items-end text-white">
-          {/* add icon disconnect
-          Hi, pseudo */}
-          <p>Hey, {username}</p>
-          <FaPowerOff className="hover:bg-red-600"/>
-          </div>
+        </div>
+        <Menu as="div" className="relative inline-block text-left">
+      <div>
+        <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+          ...
+          <ChevronDownIcon aria-hidden="true" className="-mr-1 size-5 text-gray-400" />
+        </MenuButton>
+      </div>
+
+      <MenuItems
+        transition
+        className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+      >
+        <div className="py-1">
+          <MenuItem>
+            <a
+              href="/create"
+              className="block px-4 py-2 text-sm text-black data-[focus]:bg-gray-100 data-[focus]:text-black data-[focus]:outline-none"
+            >
+              Create Crypto
+            </a>
+          </MenuItem>
+          <MenuItem>
+            <a
+              href="/promo"
+              className="block px-4 py-2 text-sm text-black data-[focus]:bg-gray-100 data-[focus]:text-black data-[focus]:outline-none"
+            >
+              Promo codes
+            </a>
+          </MenuItem>
+          <MenuItem>
+            <a
+              href="/users-assets"
+              className="block px-4 py-2 text-sm text-black data-[focus]:bg-gray-100 data-[focus]:text-black data-[focus]:outline-none"
+            >
+              Users Assets
+            </a>
+          </MenuItem>
+          <form action="#" method="POST">
+          </form>
+        </div>
+      </MenuItems>
+    </Menu>
+        <div className="flex items-end text-white">
+          { username && (
+            <p>Hey, {username}</p>
+          )
+          }
+          <FaPowerOff className="hover:bg-red-600" onClick={disconnect} />
+        </div>
       </header>
     </div>
   );

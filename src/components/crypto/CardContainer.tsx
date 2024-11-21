@@ -1,12 +1,9 @@
-import React from "react";
-import { CryptoCard } from "./CryptoCard";
+import React from 'react'
 
-const CardContainer = () => {
+function CardContainer() {
   return (
-    <div>
-      <CryptoCard></CryptoCard>
-    </div>
-  );
-};
+    <div>CardContainer</div>
+  )
+}
 
-export default CardContainer;
+export default CardContainer
