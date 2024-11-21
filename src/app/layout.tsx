@@ -17,6 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <title>Cryptcoin Invest</title>
+      </head>
       <body className={inter.className}>
       <Toaster position="top-right"></Toaster>
       <div>{children}</div>
