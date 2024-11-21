@@ -105,8 +105,8 @@ export async function createCrypto(cryptoProps: cryptoCreationProps) {
     });
 }
 
-export async function deleteCrypto(cryptoId: string) {
-  let url = `${process.env.NEXT_PUBLIC_API_URL}crypto/delete/${cryptoId}`;
+export async function deleteCrypto(id: string) {
+  let url = `${process.env.NEXT_PUBLIC_API_URL}crypto/delete/${id}`;
 
   let axiosConfig = {
     headers: {
