@@ -99,7 +99,7 @@ const Header = () => {
         <Menu as="div" className="relative inline-block text-left">
       <div>
         <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-          More options
+          ...
           <ChevronDownIcon aria-hidden="true" className="-mr-1 size-5 text-gray-400" />
         </MenuButton>
       </div>
@@ -112,7 +112,7 @@ const Header = () => {
           <MenuItem>
             <a
               href="/create"
-              className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 data-[focus]:outline-none"
+              className="block px-4 py-2 text-sm text-black data-[focus]:bg-gray-100 data-[focus]:text-black data-[focus]:outline-none"
             >
               Create Crypto
             </a>
@@ -120,7 +120,7 @@ const Header = () => {
           <MenuItem>
             <a
               href="/promo"
-              className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 data-[focus]:outline-none"
+              className="block px-4 py-2 text-sm text-black data-[focus]:bg-gray-100 data-[focus]:text-black data-[focus]:outline-none"
             >
               Promo codes
             </a>
@@ -128,7 +128,7 @@ const Header = () => {
           <MenuItem>
             <a
               href="/users-assets"
-              className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 data-[focus]:outline-none"
+              className="block px-4 py-2 text-sm text-black data-[focus]:bg-gray-100 data-[focus]:text-black data-[focus]:outline-none"
             >
               Users Assets
             </a>
