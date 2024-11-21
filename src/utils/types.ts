@@ -33,8 +33,6 @@ export type cryptoCreationProps = {
   value: number;
 }
 
-
-
 export type buyCryptoProps = {
   amount: number;
 };
@@ -55,6 +53,7 @@ export type createOfferProps = {
 }
 
 export type userAssetsProps = {
+  id: string
   firstName?: string;
   lastName?: string;
   dollarAvailables?: string;
@@ -72,7 +71,14 @@ export type promoCodeProps = {
   id?: string;
   name: string;
   value: number;
+  created_at: string;
+  updated_at: string
 };
+
+export type updatePromoCodeProps = {
+  name?: string;
+  value?: number
+}
 
 export type tradeProps = {
   id?: string;

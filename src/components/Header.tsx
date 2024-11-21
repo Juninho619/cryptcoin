@@ -9,39 +9,40 @@ interface JwtPayload {
   sub: string;
   iat: number;
   exp: number;
-  username: string; 
+  username: string;
 }
-
 
 const Header = () => {
   const { push } = useRouter();
-  const [username, setUsername] = useState('')
+  const [username, setUsername] = useState('');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
 
     if (token) {
-      const decoded = jwtDecode<JwtPayload>(token);
-      setUsername(decoded.username);
-      console.log(decoded);
-      
-    } if(!token) {
-      toast.error('Redirecting to homepage')
-      push('/')
+      try {
+        const decoded = jwtDecode<JwtPayload>(token);
+        setUsername(decoded.username);
+      } catch (error) {
+        toast.error('Invalid token. Redirecting to homepage');
+        push('/');
+      }
+    } else {
+      toast.error('Disconnected. Redirecting to homepage');
+      push('/');
     }
-  }, []);
+  }, [push]);
 
-  function disconnect(){
-  localStorage.removeItem('token')
+  function disconnect() {
+    localStorage.removeItem('token');
+    push('/');
   }
 
   return (
     <div>
       <header className='flex border-b py-4 px-4 sm:px-10 bg-[#00001a] font-[sans-serif] min-h-[70px] tracking-wide sticky'>
         <div className='flex flex-wrap items-center gap-5 w-full'>
-          <h1 className="text-white" onClick={()=>{
-            push('/crypto')
-          }}>Cryptcoin</h1>
+          <h1 className="text-white" onClick={() => push('/crypto')}>Cryptcoin</h1>
           <div
             id='collapseMenu'
             className='max-lg:hidden lg:!block max-lg:w-full max-lg:fixed max-lg:before:fixed max-lg:before:bg-black max-lg:before:opacity-50 max-lg:before:inset-0 max-lg:before:z-50'>
@@ -82,13 +83,23 @@ const Header = () => {
                   My Assets
                 </a>
               </li>
+              <li className='max-lg:border-b max-lg:py-3 px-3'>
+                <a
+                  href='./my-trades'
+                  className='lg:hover:text-[#007bff] text-white block font-semibold text-[15px]'>
+                  My Trades
+                </a>
+              </li>
             </ul>
           </div>
-          </div>
-          <div className="flex items-end text-white">
-          <p>Hey, {username}</p>
-          <FaPowerOff className="hover:bg-red-600" onClick={disconnect}/>
-          </div>
+        </div>
+        <div className="flex items-end text-white">
+          { username && (
+            <p>Hey, {username}</p>
+          )
+          }
+          <FaPowerOff className="hover:bg-red-600" onClick={disconnect} />
+        </div>
       </header>
     </div>
   );
