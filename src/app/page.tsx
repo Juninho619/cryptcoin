@@ -3,9 +3,6 @@ import Head from 'next/head';
 export default function Home() {
   return (
     <div>
-      <Head>
-        <title>Cryptcoin</title>
-      </Head>
       <div className="min-h-screen bg-[#00001a] text-gray-800">
         <header className="bg-blue-900 text-white py-4">
           <nav className="container mx-auto flex justify-between items-center px-6">
