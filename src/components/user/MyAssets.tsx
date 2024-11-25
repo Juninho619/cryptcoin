@@ -7,12 +7,14 @@ import CreateOffer from "../modal/CreateOffer";
 
 export const MyAssets = () => {
   const [assetList, setAssetList] = useState<userAssetsProps[]>();
- 
+  const [availableMoney, setAvailableMoney] = useState(0);
+
   useEffect(() => {
     myAssets()
       .then((res) => {
         console.log(res);
         setAssetList(res.UserHasCrypto);
+        setAvailableMoney(res.dollarAvailables);
       })
       .catch((e) => {
         console.log(e);
@@ -49,23 +51,32 @@ export const MyAssets = () => {
       headerName: "Amount",
       width: 150,
       renderCell: (params) => {
-        return <p>{params.row.Crypto.amount}</p>
-      }
+        return <p>{params.row.Crypto.amount}</p>;
+      },
     },
     {
       field: "Sell",
       headerName: "Sell",
       width: 150,
       renderCell: (params) => {
-        return <CreateOffer cryptoId={params.row.Crypto.id}/>
-      }
+        return <CreateOffer cryptoId={params.row.Crypto.id} />;
+      },
+    },
+    {
+      field: "dollarAvailables",
+      headerName: "Dollar Available",
+      width: 150,
+      renderCell: () => {
+        return <p>{availableMoney}</p>;
+      },
     },
   ];
+
   return (
-    <div className='w-full'>
+    <div className="w-full">
       {assetList && assetList.length > 0 && (
         <DataGrid
-          getRowId={(row) => row.Crypto.id} 
+          getRowId={(row) => row.Crypto.id}
           rows={assetList}
           columns={columns}
           style={{ minHeight: "100vh", width: "100%" }}
