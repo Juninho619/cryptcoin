@@ -49,7 +49,7 @@ export const MyAssets = () => {
       headerName: "Amount",
       width: 150,
       renderCell: (params) => {
-        return <p>{params.row.amount}</p>
+        return <p>{params.row.Crypto.amount}</p>
       }
     },
     {
