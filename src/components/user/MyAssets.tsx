@@ -1,7 +1,7 @@
 "use client";
 import { myAssets } from "@/service/user";
 import { userAssetsProps } from "@/utils/types";
-import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import React, { useEffect, useState } from "react";
 import CreateOffer from "../modal/CreateOffer";
 
@@ -61,7 +61,7 @@ export const MyAssets = () => {
        {availableMoney !== null && (
         <div>
           {availableMoney === 0 ? (
-            <p>You're bankrupt</p>
+            <p className="red">You're bankrupt</p>
           ) : (
             <p style={{ color: availableMoney < 100 ? 'red' : 'inherit' }}>
               Remaining: {availableMoney}
