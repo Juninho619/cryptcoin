@@ -66,7 +66,7 @@ export const MyAssets = () => {
 
   return (
     <div className="w-full">
-      {availableMoney && (
+      {availableMoney && availableMoney > 0 && (
         <div>
         <p>      <p>Remaining: </p>
         <p>{availableMoney}</p></p>
