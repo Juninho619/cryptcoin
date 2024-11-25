@@ -66,6 +66,8 @@ export const MyAssets = () => {
 
   return (
     <div className="w-full">
+        <p>Remaining: </p>
+        <p>{availableMoney}</p>
       {assetList && assetList.length > 0 && (
         <DataGrid
           getRowId={(row) => row.Crypto.id}
@@ -74,8 +76,6 @@ export const MyAssets = () => {
           style={{ minHeight: "100vh", width: "100%" }}
         />
       )}
-      <p>Remaining: </p>
-      <p>{availableMoney}</p>
     </div>
   );
 };
