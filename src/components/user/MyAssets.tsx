@@ -60,13 +60,15 @@ export const MyAssets = () => {
     <div className="w-full">
        {availableMoney !== null && (
         <div>
-          {availableMoney > 0 ? (
-            <p>Remaining: {availableMoney}</p>
-          ) : (
+          {availableMoney === 0 ? (
             <p>You're bankrupt</p>
+          ) : (
+            <p style={{ color: availableMoney < 100 ? 'red' : 'inherit' }}>
+              Remaining: {availableMoney}
+            </p>
           )}
         </div>
-      )} 
+      )}
       {assetList && assetList.length > 0 && (
         <DataGrid
           getRowId={(row) => row.Crypto.id}
