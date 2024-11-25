@@ -66,8 +66,13 @@ export const MyAssets = () => {
 
   return (
     <div className="w-full">
-        <p>Remaining: </p>
-        <p>{availableMoney}</p>
+      {availableMoney && (
+        <div>
+        <p>      <p>Remaining: </p>
+        <p>{availableMoney}</p></p>
+        </div>
+      )}
+  
       {assetList && assetList.length > 0 && (
         <DataGrid
           getRowId={(row) => row.Crypto.id}
