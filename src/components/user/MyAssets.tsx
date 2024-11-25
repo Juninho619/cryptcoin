@@ -54,25 +54,19 @@ export const MyAssets = () => {
         return <CreateOffer cryptoId={params.row.Crypto.id} />;
       },
     },
-    {
-      field: "dollarAvailables",
-      headerName: "Dollar Available",
-      width: 150,
-      renderCell: () => {
-        return <p>{availableMoney}</p>;
-      },
-    },
   ];
 
   return (
     <div className="w-full">
-      {availableMoney && availableMoney > 0 && (
+       {availableMoney !== null && (
         <div>
-        <p>      <p>Remaining: </p>
-        <p>{availableMoney}</p></p>
+          {availableMoney > 0 ? (
+            <p>Remaining: {availableMoney}</p>
+          ) : (
+            <p>You're bankrupt</p>
+          )}
         </div>
-      )}
-  
+      )} 
       {assetList && assetList.length > 0 && (
         <DataGrid
           getRowId={(row) => row.Crypto.id}
