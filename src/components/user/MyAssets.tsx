@@ -47,14 +47,6 @@ export const MyAssets = () => {
       },
     },
     {
-      field: "amount",
-      headerName: "Amount",
-      width: 150,
-      renderCell: (params) => {
-        return <p>{params.row.Crypto.amount}</p>;
-      },
-    },
-    {
       field: "Sell",
       headerName: "Sell",
       width: 150,
@@ -82,6 +74,8 @@ export const MyAssets = () => {
           style={{ minHeight: "100vh", width: "100%" }}
         />
       )}
+      <p>Remaining: </p>
+      <p>{availableMoney}</p>
     </div>
   );
 };
